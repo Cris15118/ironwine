@@ -20,10 +20,15 @@ function AuthWrapper(props) {
       try {
         
         const response = await verifyService()
-        console.log("token validado")
-        setIsLoggedIn(true)
-        setUser(response.data.payload)
-        setIsLoading(false)
+       
+        if(response) // si no esta logueado
+        {
+          console.log("token validado")
+          setIsLoggedIn(true)
+          setUser(response.data.payload)
+          setIsLoading(false)
+        }
+        
   
       } catch (error) {
         console.log("token invalido o no hay token")
