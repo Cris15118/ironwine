@@ -2,7 +2,9 @@
 
 function Profile() {
   return (
-    <div>Profile</div>
+    <div>
+      <h1>VAYA MIERDA</h1>
+    </div>
   )
 }
 

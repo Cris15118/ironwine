@@ -6,6 +6,8 @@ import NotFound from "./pages/error/NotFound";
 import Login from "./pages/auth/Login"
 import Signup from "./pages/auth/Signup"
 import NavBar from "./components/Navbar"
+import IsPrivate from './components/auth/IsPrivate';
+import Profile from './pages/Profile'
 function App() {
   return (
     <div className="App">
@@ -13,8 +15,9 @@ function App() {
       <Routes>
        
 
-      <Route path='/auth/login' element = {<Login/> } />
+      <Route path='/auth/login' element = { <Login/> } />
       <Route path='/auth/signup' element = {<Signup/>}/>
+      <Route path='/profile' element = {<IsPrivate><Profile/> </IsPrivate>}/>
 
 
         <Route path='/error' element = {<Error/> }/>
