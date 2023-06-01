@@ -1,53 +1,49 @@
 import { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth.services";
-import { AuthContext } from "../../context/auth.context";
 
-
-
-
+import { AuthContext } from "../../context/auth.context"
 
 function Login() {
-  const {authenticateUser}=useContext(AuthContext)
+  const {authenticateUser}=useContext(AuthContext) // trae la funcion de context
 
-  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage,setErrorMessage] = useState("")
+  const navigate=useNavigate()
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
 
-  const handleEmailChange = (e)=>  setEmail(e.target.value)
-  const handlePasswordChange=(e) => setPassword(e.target.value)
-
-  const handleLogin = async (e)=>{
-    e.preventDefault()
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try{
-      const response =loginService({email,password})
+    //1. guardamos token en un lugar seguro
+      const response = await loginService({
+        email,password
+      })
+      console.log(response)
       localStorage.setItem("authToken",response.data.authToken)
+      //2. verificamos el token para saber quien es el usuario 
       await authenticateUser()
       navigate("/profile")
-
     }
     catch(err)
     {
-      console.log(err)
-      if(err.response.status ===400)
-      {
-        setErrorMessage(err.response.data.errorMessage)
+      if (err.response.status === 400) {
+        setErrorMessage(err.response.data.errorMessage);
+      } else {
+        navigate("/error");
       }
-      else{
-        
-        navigate("/error")
-      }
-
-      
+     
     }
-  }
-
+  };
 
   return (
     <div>
 
-    <form onSubmit={handleLogin}>
+      <h1>Log In</h1>
+
+      <form onSubmit={handleLogin}>
         <label>Email:</label>
         <input
           type="email"
@@ -70,10 +66,9 @@ function Login() {
         {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
         <button type="submit">Login</button>
       </form>
-
-
+      
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
