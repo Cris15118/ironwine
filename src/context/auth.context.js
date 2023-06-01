@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { verifyService } from "../services/auth.services";
+import {RingLoader} from "react-spinners"
 
 const AuthContext = createContext()
 
@@ -48,8 +49,8 @@ function AuthWrapper(props) {
   
     if (isLoading) {
       return (
-        <div className="App">
-          <h3>... validando credenciales</h3>
+        <div className="spinner">
+          <RingLoader />
         </div>
       )
     }
