@@ -21,7 +21,7 @@ function Signup() {
     try {
       const user = {username, email, password}
       await signupService(user)
-      navigate("auth/login")
+      navigate("/auth/login")
       
     } catch (err) {
       if(err.response.status === 400){
