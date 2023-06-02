@@ -9,10 +9,12 @@ import NavBar from "./components/Navbar"
 import IsPrivate from './components/auth/IsPrivate';
 import Profile from './pages/Profile'
 import Home from './pages/Home'
+import  Search  from './components/Search';
 function App() {
   return (
     <div className="App">
  <NavBar/>
+ <Search/>
       <Routes>
        
 
@@ -20,6 +22,7 @@ function App() {
       <Route path='/auth/signup' element = {<Signup/>}/>
       <Route path='/profile' element = {<IsPrivate><Profile/> </IsPrivate>}/>
       <Route path='/' element = {<Home/>}/>
+      
 
         <Route path='/error' element = {<Error/> }/>
         <Route path='*' element = {<NotFound/> }/>
