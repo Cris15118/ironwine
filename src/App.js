@@ -73,8 +73,8 @@ function App() {
           <Offcanvas.Title>CUENTA EN IRONWINE</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Login />
-          <Signup/>
+          <Login mostrarOcultarLogin={mostrarOcultarLogin}/>
+          <Signup />
         </Offcanvas.Body>
       </Offcanvas>
     </div>

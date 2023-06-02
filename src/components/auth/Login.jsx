@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/auth.context";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-function Login() {
+function Login({mostrarOcultarLogin}) { //funcion para ocultar formularios
   const { authenticateUser } = useContext(AuthContext); // trae la funcion de context
 
   const [email, setEmail] = useState("");
@@ -28,7 +28,8 @@ function Login() {
       localStorage.setItem("authToken", response.data.authToken);
       //2. verificamos el token para saber quien es el usuario
       await authenticateUser();
-      navigate("/profile");
+      mostrarOcultarLogin() // cierra offcanvas de los formularios
+     // navigate("/profile");
     } catch (err) {
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);

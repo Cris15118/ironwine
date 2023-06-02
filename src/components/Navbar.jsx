@@ -23,9 +23,11 @@ function Navbar({mostrarOcultarLogin}) { // pasamos funcion de mostrar/ocultar l
 
     <Link to={"/"}> <img src={ironWineImg} alt="logo" width={80} /> </Link>
     {isLoggedIn && <Link to={"/profile"}>Perfil</Link> }
-    {isLoggedIn && <Button onClick={handleLogout}>Cerrar sesion</Button>}
-    {!isLoggedIn && <Link to={"/auth/signup"}>Registro</Link>}
-     {!isLoggedIn && <Button onClick={handleLogin}>Login</Button>}
+  
+     {!isLoggedIn && <Link to={"/auth/signup"} >Registro</Link>} {/* mostrarOcultarLogin para poder cerrarlo al loguearte */}    
+     {!isLoggedIn && <Button onClick={handleLogin} >Login</Button>}
+     {isLoggedIn && <Link to={"/cart"}>Carrito</Link> }
+     {isLoggedIn && <Button onClick={handleLogout}>Cerrar sesion</Button>}
       
 
       

@@ -22,7 +22,9 @@ function Signup() {
     try {
       const user = { username, email, password };
       await signupService(user);
-      navigate("/auth/login");
+     
+      navigate("/");
+      
     } catch (err) {
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);
@@ -54,23 +56,22 @@ function Signup() {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-          <Form.Label>Password:</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
           </Form.Group>
           <Form.Group className="mb-3">
-          <Form.Text muted>
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-          </Form.Text>
+            <Form.Text muted>
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+            </Form.Text>
           </Form.Group>
           <Button variant="outline-primary" type="submit">
             Signup
           </Button>
-          
         </Form>
       </Card.Body>
     </Card>
