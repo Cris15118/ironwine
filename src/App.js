@@ -15,11 +15,26 @@ import AdminHome from "./pages/admin/AdminHome";
 import AdminEdit from "./pages/admin/AdminEdit";
 import AdminCreate from "./pages/admin/AdminCreate";
 import Search from "./components/Search";
+
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
+
 function App() {
+
+  //para Offcanvas
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);  
+
+  const mostrarOcultarLogin =()=> setShow(!show)
+
+
   return (
     <div className="App">
-      <NavBar />
+      <NavBar mostrarOcultarLogin={mostrarOcultarLogin} />
       <Search />
+      
       <Routes>
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/signup" element={<Signup />} />
@@ -41,6 +56,15 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Offcanvas show={show} onHide={handleClose} placement="end" name="end" >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
     </div>
   );
 }

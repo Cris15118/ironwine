@@ -1,10 +1,11 @@
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 import { useContext } from "react"
+import Button from 'react-bootstrap/Button';
 
 
 
-function Navbar() {
+function Navbar({mostrarOcultarLogin}) { // pasamos funcion de mostrar/ocultar login
   const navigate = useNavigate()
   const {isLoggedIn, authenticateUser}= useContext(AuthContext)
 
@@ -13,13 +14,16 @@ function Navbar() {
     authenticateUser()
     navigate("/")
   }
+  const handleLogin =()=>{
+    mostrarOcultarLogin()
+  }
   return (
     <div>
 
     {isLoggedIn && <Link to={"/profile"}>Perfil</Link> }
-    {isLoggedIn && <button onClick={handleLogout}>Cerrar sesion</button>}
+    {isLoggedIn && <Button onClick={handleLogout}>Cerrar sesion</Button>}
     {!isLoggedIn && <Link to={"/auth/signup"}>Registro</Link>}
-     {!isLoggedIn && <Link to={"/auth/login"}>Login</Link>}
+     {!isLoggedIn && <Button onClick={handleLogin}><Link to={"/auth/login"}>Login</Link></Button>}
       
 
       
