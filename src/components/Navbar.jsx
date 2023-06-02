@@ -23,7 +23,7 @@ function Navbar({mostrarOcultarLogin}) { // pasamos funcion de mostrar/ocultar l
     {isLoggedIn && <Link to={"/profile"}>Perfil</Link> }
     {isLoggedIn && <Button onClick={handleLogout}>Cerrar sesion</Button>}
     {!isLoggedIn && <Link to={"/auth/signup"}>Registro</Link>}
-     {!isLoggedIn && <Button onClick={handleLogin}><Link to={"/auth/login"}>Login</Link></Button>}
+     {!isLoggedIn && <Button onClick={handleLogin}>Login</Button>}
       
 
       
