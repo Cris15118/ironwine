@@ -24,6 +24,7 @@ function AuthWrapper(props) {
        
         if(response) // si no esta logueado
         {
+         
           console.log("token validado")
           setIsLoggedIn(true)
           setUser(response.data.payload)
