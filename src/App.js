@@ -61,7 +61,7 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      
+
       <Offcanvas
         show={show}
         onHide={handleClose}
@@ -70,7 +70,7 @@ function App() {
         backdrop={"truenpm"}
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Login</Offcanvas.Title>
+          <Offcanvas.Title>CUENTA EN IRONWINE</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Login />
