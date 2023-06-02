@@ -1,8 +1,10 @@
 import { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth.services";
-
+import Button from 'react-bootstrap/Button';
 import { AuthContext } from "../../context/auth.context"
+
+import Form from 'react-bootstrap/Form';
 
 function Login() {
   const {authenticateUser}=useContext(AuthContext) // trae la funcion de context
@@ -43,7 +45,7 @@ function Login() {
 
       <h1>Log In</h1>
 
-      <form onSubmit={handleLogin}>
+      <Form onSubmit={handleLogin}>
         <label>Email:</label>
         <input
           type="email"
@@ -64,8 +66,8 @@ function Login() {
 
         <br />
         {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
-        <button type="submit">Login</button>
-      </form>
+        <Button variant="outline-success" type="submit">Login</Button>
+      </Form>
       
     </div>
   );

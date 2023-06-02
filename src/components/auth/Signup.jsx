@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { signupService} from "../../services/auth.services"
-
+import Button from 'react-bootstrap/Button';
 
 function Signup() {
   const navigate = useNavigate()
@@ -70,7 +70,7 @@ function Signup() {
 
       {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
 
-      <button type="submit">Signup</button>
+      <Button variant="outline-primary" type="submit">Signup</Button>
     </form>
 
     </div>

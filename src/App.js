@@ -4,8 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Error from "./pages/error/Error";
 import NotFound from "./pages/error/NotFound";
-//import Login from "./pages/auth/Login";
-//import Signup from "./pages/auth/Signup";
 import NavBar from "./components/Navbar";
 import IsPrivate from "./components/auth/IsPrivate";
 import Profile from "./pages/Profile";
@@ -19,10 +17,12 @@ import AdminCreate from "./pages/admin/AdminCreate";
 import Search from "./components/Search";
 
 //offcanvas
-import Login from "./components/auth/Login";
+import Login from "./components/auth/Login"
+import Signup from "./components/auth/Signup"
 
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
+//import Signup from "./components/auth/Signup";
 
 function App() {
   //para Offcanvas
@@ -36,9 +36,7 @@ function App() {
       <NavBar mostrarOcultarLogin={mostrarOcultarLogin} />
       <Search />
 
-      <Routes>
-        {/* <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/signup" element={<Signup />} /> */}
+      <Routes>       
         <Route
           path="/profile"
           element={
@@ -63,6 +61,7 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      
       <Offcanvas
         show={show}
         onHide={handleClose}
@@ -75,6 +74,7 @@ function App() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Login />
+          <Signup/>
         </Offcanvas.Body>
       </Offcanvas>
     </div>
