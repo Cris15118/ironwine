@@ -7,7 +7,7 @@ function CartProducts(props) {
 
     <img src={image} alt="vinos" width={200}/>
             <p>{price} <span>€</span> </p>
-            <Link to={`/products/${_id}`}>{name}</Link>
+            <Link to={`/products/${_id}/details`}>{name}</Link>
     </div>
 ) 
 } 

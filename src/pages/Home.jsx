@@ -42,7 +42,7 @@ function Home() {
       {allProducts.map ((eachProduct)=>{
         return(
           
-          <div>
+          <div key={eachProduct._id} >
             <CardProducts cardProduct = {eachProduct}/>
             
           </div>
