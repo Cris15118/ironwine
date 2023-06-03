@@ -15,3 +15,10 @@
 h3{
   text-align: center;
 }
+
+
+/* ADMIN CREATE FORM */
+.admin-create-form{
+  margin: auto;
+  width: 75%;
+}

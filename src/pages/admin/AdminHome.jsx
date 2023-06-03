@@ -1,9 +1,11 @@
 
-
 function AdminHome() {
+
   return (
-    <div>AdminHome</div>
-  )
+    <div>
+     
+    </div>
+  );
 }
 
-export default AdminHome
+export default AdminHome;

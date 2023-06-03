@@ -4,7 +4,7 @@ const createAdminService = (newProduct)=>{
     return service.post("/admin/create", newProduct)
 }
 
-const editAdminService = (productId)=>{
+const editAdminService = (productId,updatedProduct)=>{
     return service.put(`/admin/${productId}`,updatedProduct)
 }
 

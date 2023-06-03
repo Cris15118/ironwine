@@ -55,8 +55,8 @@ function App() {
 
         {/* admin */}
         <Route path="/admin" element={<AdminHome />} />
-        <Route path="/admin/edit" element={<AdminCreate />} />
-        <Route path="/admin/create" element={<AdminEdit />} />
+        <Route path="/admin/edit" element={<AdminEdit />} />
+        <Route path="/admin/create" element={<AdminCreate />} />
 
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
