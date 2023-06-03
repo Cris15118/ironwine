@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { createAdminService } from "../../services/admin.services";
+import { uploadImageService } from "../../services/upload.services"; //cloudinary
 
 function AdminCreate() {
   const navigate = useNavigate();
@@ -19,15 +20,43 @@ function AdminCreate() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [imageUrl, setImageUrl] = useState(""); //subir imagen
+  const [isUploading, setIsUploading] = useState(false); //subir imagen
+
+  const handleFileUpload = async (e) => {
+    
+    if (!e.target.files[0]) {
+      
+      return; // si no hay seleccionado ningun archivo
+    }
+
+    setIsUploading(true);
+    const uploadData = new FormData(); // formato en el que tiene q ser mandado al BE
+    uploadData.append("image", e.target.files[0]); // image tiene que ser el mismo nombre q en el middleware uploader.single("image")
+    try {
+      const response = await uploadImageService(uploadData);
+      console.log(response.data.image)
+      setImageUrl(response.data.image); // manda la url de la imagen al front end, usando imageUrl
+      setFormInputs({ ...formInputs, image: response.data.image })
+      setIsUploading(false);
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
   const handleInputsChange = (e) =>
     setFormInputs({ ...formInputs, [e.target.name]: e.target.value }); // actualiza el estado de la propiedad que cambie en ese momento
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsLoading(true)
-      const response = await createAdminService(formInputs);
+      setIsLoading(true);
+//      await handleFileUpload(e);
+      console.log(formInputs)
+      const response = await createAdminService(
+        formInputs       
+      );
       console.log("producto creado", response);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       if (error.response.status === 400) {
@@ -48,15 +77,37 @@ function AdminCreate() {
 
   return (
     <div>
+      {imageUrl ? (
+        <div>
+          <img src={imageUrl} alt="preview-img" width={200} />
+        </div>
+      ) : null}
+      <p>{formInputs.tipo}</p>   
+          
+             
+           
+            
+  
       <Card className="admin-create-form">
         <h3>Crear Producto</h3>
         <Card.Body>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formFile" className="mb-3">
-              {/* cambiar para cloudinary */}
-              <Form.Label>Imagen</Form.Label>
-              <Form.Control type="file" />
+          <Form onSubmit={handleSubmit} >
+          <Form.Group className="mb-3">
+          <Form.Label>Imagen</Form.Label>
+              <Form.Control
+                type="file"
+                onChange={handleFileUpload}
+                disabled={isUploading}
+                
+              />
+              {isUploading ? (
+                <div className="spinner">
+                  {" "}
+                  <RingLoader />{" "}
+                </div>
+              ) : null}
             </Form.Group>
+           
 
             <Form.Group className="mb-3">
               <Form.Label>Nombre</Form.Label>
@@ -88,7 +139,21 @@ function AdminCreate() {
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Select aria-label="Default select example">
+              <Form.Label>Precio</Form.Label>
+              <Form.Control
+                type="number"
+                name="price"
+                value={formInputs.price}
+                onChange={handleInputsChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Select
+                name="tipo"
+                aria-label="Default select example"
+                value={formInputs.tipo}
+                onChange={handleInputsChange}
+              >
                 <option>Seleccione un tipo de vino:</option>
                 <option value="Tinto">Tinto</option>
                 <option value="Blanco">Blanco</option>
@@ -108,7 +173,11 @@ function AdminCreate() {
             </Form.Group>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
-            <Button variant="outline-success" type="submit" disabled={isLoading}>
+            <Button
+              variant="outline-success"
+              type="submit"
+              disabled={isLoading}
+            >
               Crear Producto
             </Button>
           </Form>
