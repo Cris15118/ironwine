@@ -20,14 +20,20 @@ function CartProducts(props) {
     try {
       setIsLoading(true);
       const response = await pullCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
-        
-      setProductDetail({
-        _id: response.data.productId._id,
-        name: response.data.productId.name,
-        image: response.data.productId.image,
-        price: response.data.productId.price,
-        quantity: response.data.quantity,
-      });
+      console.log(response)
+      if (response.data) { // si no ha sido borrado
+        setProductDetail({
+          _id: response.data.productId._id,
+          name: response.data.productId.name,
+          image: response.data.productId.image,
+          price: response.data.productId.price,
+          quantity: response.data.quantity,
+        });
+      }
+      else{
+        setProductDetail(null)
+      }
+
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -39,7 +45,7 @@ function CartProducts(props) {
     try {
       //setIsLoading(true);
       const response = await addCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
-      console.log("response",response)
+
       setProductDetail({
         _id: response.data.productId._id,
         name: response.data.productId.name,
@@ -55,26 +61,25 @@ function CartProducts(props) {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="spinner">
-        <RingLoader />
-      </div>
-    );
-  }
   return (
-    <div>
-      <Card style={{ width: "18rem" }}>
+    <>
+    {/* solo se renderizara si existe, para que cuando se borre desaparezca */}
+     {productsDetails&& 
+     <Card style={{ width: "18rem" }}>
         <Card.Img variant="top" src={productsDetails.image} />
         <Card.Body>
           <Card.Title>{productsDetails.name} </Card.Title>
           <Card.Text>Precio : {productsDetails.price} €</Card.Text>
           <Card.Text>Cantidad :{productsDetails.quantity} </Card.Text>
-          <Button onClick={handleRestarProducts}>-</Button>
-          <Button onClick={handleSumarProducts}>+</Button>
+          <Button onClick={handleRestarProducts} disabled={isLoading}>
+            -
+          </Button>
+          <Button onClick={handleSumarProducts} disabled={isLoading}>
+            +
+          </Button>
         </Card.Body>
-      </Card>
-    </div>
+      </Card>}
+    </>
   );
 }
 export default CartProducts;
