@@ -1,5 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
+import {  useNavigate } from "react-router-dom"
 import { useState } from "react"
 import {RingLoader} from "react-spinners"
 import {getProductsService} from "../services/products.services"

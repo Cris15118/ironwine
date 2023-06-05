@@ -22,6 +22,7 @@ import Signup from "./components/auth/Signup"
 
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import IsPrivateAdmin from "./components/auth/IsPrivateAdmin";
 //import Signup from "./components/auth/Signup";
 
 function App() {
@@ -49,14 +50,14 @@ function App() {
         <Route path="/" element={<Home />} />
 
         {/* cart */}
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/cart" element={<IsPrivate><Cart /></IsPrivate>} />
+        <Route path="/payment" element={<IsPrivate><Payment /></IsPrivate>} />
         <Route path="/products/:id/details" element={<ProductDetails />} />
 
         {/* admin */}
-        <Route path="/admin" element={<AdminHome />} />
-        <Route path="/admin/:id/edit" element={<AdminEdit />} />
-        <Route path="/admin/create" element={<AdminCreate />} />
+        <Route path="/admin" element={<IsPrivateAdmin><AdminHome /></IsPrivateAdmin>} />
+        <Route path="/admin/:id/edit" element={<IsPrivateAdmin><AdminEdit /></IsPrivateAdmin>} />
+        <Route path="/admin/create" element={<IsPrivateAdmin><AdminCreate /></IsPrivateAdmin>} />
 
         <Route path="/error" element={<Error />} />
         <Route path="*" element={<NotFound />} />
