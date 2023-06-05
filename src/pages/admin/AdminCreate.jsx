@@ -24,20 +24,18 @@ function AdminCreate() {
   const [isUploading, setIsUploading] = useState(false); //subir imagen
 
   const handleFileUpload = async (e) => {
-    
     if (!e.target.files[0]) {
-      
       return; // si no hay seleccionado ningun archivo
     }
-
-    setIsUploading(true);
-    const uploadData = new FormData(); // formato en el que tiene q ser mandado al BE
-    uploadData.append("image", e.target.files[0]); // image tiene que ser el mismo nombre q en el middleware uploader.single("image")
     try {
+      setIsUploading(true);
+      const uploadData = new FormData(); // formato en el que tiene q ser mandado al BE
+      uploadData.append("image", e.target.files[0]); // image tiene que ser el mismo nombre q en el middleware uploader.single("image")
+
       const response = await uploadImageService(uploadData);
-      console.log(response.data.image)
+      console.log(response.data.image);
       setImageUrl(response.data.image); // manda la url de la imagen al front end, usando imageUrl
-      setFormInputs({ ...formInputs, image: response.data.image })
+      setFormInputs({ ...formInputs, image: response.data.image });
       setIsUploading(false);
     } catch (error) {
       navigate("/error");
@@ -50,11 +48,9 @@ function AdminCreate() {
     e.preventDefault();
     try {
       setIsLoading(true);
-//      await handleFileUpload(e);
-      console.log(formInputs)
-      const response = await createAdminService(
-        formInputs       
-      );
+      //      await handleFileUpload(e);
+      console.log(formInputs);
+      const response = await createAdminService(formInputs);
       console.log("producto creado", response);
       setIsLoading(false);
     } catch (error) {
@@ -82,23 +78,18 @@ function AdminCreate() {
           <img src={imageUrl} alt="preview-img" width={200} />
         </div>
       ) : null}
-      <p>{formInputs.tipo}</p>   
-          
-             
-           
-            
-  
+      <p>{formInputs.tipo}</p>
+
       <Card className="admin-create-form">
         <h3>Crear Producto</h3>
         <Card.Body>
-          <Form onSubmit={handleSubmit} >
-          <Form.Group className="mb-3">
-          <Form.Label>Imagen</Form.Label>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Imagen</Form.Label>
               <Form.Control
                 type="file"
                 onChange={handleFileUpload}
                 disabled={isUploading}
-                
               />
               {isUploading ? (
                 <div className="spinner">
@@ -107,7 +98,6 @@ function AdminCreate() {
                 </div>
               ) : null}
             </Form.Group>
-           
 
             <Form.Group className="mb-3">
               <Form.Label>Nombre</Form.Label>

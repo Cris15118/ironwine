@@ -28,6 +28,7 @@ function Navbar({mostrarOcultarLogin}) { // pasamos funcion de mostrar/ocultar l
      {!isLoggedIn && <Button onClick={handleLogin} >Login</Button>}
      {isLoggedIn && <Link to={"/cart"}>Carrito</Link> }
      {isLoggedIn && <Button onClick={handleLogout}>Cerrar sesion</Button>}
+      <Link to="/admin" >Admin</Link>
       
 
       
