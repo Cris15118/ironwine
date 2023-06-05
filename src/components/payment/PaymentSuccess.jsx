@@ -2,16 +2,26 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {RingLoader} from "react-spinners"
 import { updatePaymentIntentService } from "../../services/payment.services";
-
+import { addHistorialService } from "../../services/historial.services";
+import { deleteCartService } from "../../services/cart.services";
 const PaymentSuccess = () => {
 
   const navigate = useNavigate();
   const location = useLocation()
 
   const [isFetching, setIsFetching] = useState(true);
-
+  const addHistorial = async () => {
+    try {
+      await addHistorialService();
+      await deleteCartService();
+    } catch (error) {
+      console.log(error);
+      navigate("/error");
+    }
+  };
   useEffect(() => {
     handleUseEffect();
+    
   }, []);
 
   const handleUseEffect = async () => {
@@ -33,6 +43,7 @@ const PaymentSuccess = () => {
     try {
       await updatePaymentIntentService(paymentIntentInfo);
       setIsFetching(false);
+      addHistorial()
     } catch (error) {
       navigate("/error");
     }
