@@ -7,15 +7,27 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router";
+import { addHistorialService } from "../../services/historial.services";
 
 function CheckoutForm({price}) {
   const stripe = useStripe();
   const elements = useElements();
-
+  const navigate=useNavigate()
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+
+   const addHistorial =async()=>{
+    try {
+      await addHistorialService()
+    } catch (error) {
+      navigate("/error")
+      
+    }
+   }
   useEffect(() => {
     if (!stripe) {
       return;
@@ -30,9 +42,14 @@ function CheckoutForm({price}) {
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+      console.log("paymentIntent.status",paymentIntent.status)
       switch (paymentIntent.status) {
         case "succeeded":
           setMessage("Payment succeeded!");
+          //vaciar carrito
+       
+          addHistorial()
+          
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -62,7 +79,7 @@ function CheckoutForm({price}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${process.env.REACT_APP_CLIENT_URL}`,
+        return_url: `${process.env.REACT_APP_CLIENT_URL}/payment-success`,
       },
     });
 
@@ -91,12 +108,13 @@ function CheckoutForm({price}) {
         onChange={(e) => setEmail(e.target.value)}
       /> */}
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <Button type="submit" disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pagar ahora"}
         </span>
-        <p>El precio total a pagar es : {price} €</p>
-      </button>
+        
+      </Button>
+      <p>El precio total a pagar es : {price} €</p>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>

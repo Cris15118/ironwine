@@ -5,15 +5,14 @@ import { deleteCartService, getCartservice, getTotalCartService } from "../servi
 
 import CartProduct from "../components/CartProduct";
 import { Button } from "react-bootstrap";
-import PaymentIntent from "../components/payment/PaymentIntent";
-import { Form } from "react-router-dom";
+import ModalPago from "../components/payment/ModalPago";
 function Cart() {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState();
   const navigate = useNavigate();
   const [showPaymentIntent, setShowPaymentIntent] = useState(false); // para pasarela de pago
   const [total, setTotal] = useState(0);
-
+  const [modalShow, setModalShow] = useState(false); // mostrar pasarela
   const getData = async () => {
     setIsLoading(true);
     try {
@@ -72,12 +71,15 @@ function Cart() {
       {products.length > 0 && (
         <Button onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
       )}
-      {showPaymentIntent === false ? (
-        <Button onClick={() => setShowPaymentIntent(true)}>Purchase</Button>
-      ) : (
-        <PaymentIntent price={total} />
-      )}
-           
+     
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Pagar ahora
+      </Button>
+
+      <ModalPago  price={total}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
         
         <input name="total" value={total} disabled />
       
