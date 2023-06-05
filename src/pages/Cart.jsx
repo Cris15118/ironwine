@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { RingLoader } from "react-spinners";
-import { getCartservice } from "../services/cart.services";
+import { deleteCartService, getCartservice } from "../services/cart.services";
 
 import CartProduct from "../components/CartProduct";
+import { Button } from "react-bootstrap";
 
 function Cart() {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,11 +13,7 @@ function Cart() {
 
   useEffect(() => {
     getData();
-  
   }, []);
-
-
-
 
   const getData = async () => {
     setIsLoading(true);
@@ -31,6 +28,19 @@ function Cart() {
     }
   };
 
+  const handleVaciarCarrito = async () => {
+    try {
+      setIsLoading(true);
+      const response=await deleteCartService(); // borrar todos los productos del carrito del usuario
+      setProducts(response.data);
+      setIsLoading(false);
+      navigate("/")
+    } catch (error) {
+      navigate("/error");
+    }
+    
+  };
+
   if (isLoading) {
     return (
       <div className="spinner">
@@ -41,18 +51,13 @@ function Cart() {
 
   return (
     <div>
-    <h3>Carro de la compra</h3>
-    {products.map((eachProduct,index)=>{
-      return(
-        <CartProduct key={index} cardProduct={eachProduct}/>
-      )
-    })}
+      <h3>Carro de la compra</h3>
+      {products.map((eachProduct, index) => {
+        return <CartProduct key={index} cardProduct={eachProduct} />;
+      })}
 
-
-
+      {products.length>0&&<Button onClick={handleVaciarCarrito}>Vaciar Carrito</Button>}
     </div>
-    
-
   );
 }
 
