@@ -1,13 +1,13 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { addCartService, pullCartService } from "../services/cart.services";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useNavigate } from "react-router";
-import { RingLoader } from "react-spinners";
 
 function CartProducts(props) {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  
   const [productsDetails, setProductDetail] = useState({
     _id: props.cardProduct.productId._id,
     name: props.cardProduct.productId.name,
@@ -20,7 +20,7 @@ function CartProducts(props) {
     try {
       setIsLoading(true);
       const response = await pullCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
-      console.log(response)
+
       if (response.data) { // si no ha sido borrado
         setProductDetail({
           _id: response.data.productId._id,
@@ -33,7 +33,7 @@ function CartProducts(props) {
       else{
         setProductDetail(null)
       }
-
+      props.getData() // vuelve a actualizar todos los datos del carrito para poder tenerlos actualizados para calcular el total del pago
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -43,7 +43,7 @@ function CartProducts(props) {
 
   const handleSumarProducts = async () => {
     try {
-      //setIsLoading(true);
+    
       const response = await addCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
 
       setProductDetail({
@@ -53,8 +53,7 @@ function CartProducts(props) {
         price: response.data.productId.price,
         quantity: response.data.quantity,
       });
-
-      //setIsLoading(false); cambiar a spinner propio del boton
+      props.getData() // vuelve a actualizar todos los datos del carrito para poder tenerlos actualizados para calcular el total del pago
     } catch (error) {
       console.log(error);
       navigate("/error");
@@ -77,6 +76,7 @@ function CartProducts(props) {
           <Button onClick={handleSumarProducts} disabled={isLoading}>
             +
           </Button>
+       
         </Card.Body>
       </Card>}
     </>

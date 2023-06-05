@@ -13,7 +13,7 @@ import { createPaymentIntentService } from "../../services/payment.services";
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY); // Make sure you add your publishable API key to the .env.local
 
-function PaymentIntent({ productDetails }) {
+function PaymentIntent({ price }) {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function PaymentIntent({ productDetails }) {
   const handleUseEffect = async () => {
     //                   this is the product info sent to the backend with the product to purchase
     //                                                    |
-    const response = await createPaymentIntentService(productDetails)
+    const response = await createPaymentIntentService(price)
     setClientSecret(response.data.clientSecret)
   }
 
@@ -40,7 +40,7 @@ function PaymentIntent({ productDetails }) {
     <div className="App">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm price={price} />
         </Elements>
       )}
     </div>
