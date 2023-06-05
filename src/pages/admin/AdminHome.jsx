@@ -39,6 +39,7 @@ function AdminHome() {
   return (
     <div>
       <h1>AQUI ESTA TU CASA</h1>
+      <Link to="/admin/create">Crear Productos</Link>
       {allProducts.map ((eachProduct)=>{
         return(
           

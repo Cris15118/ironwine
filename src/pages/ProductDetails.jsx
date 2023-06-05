@@ -1,4 +1,4 @@
-import axios from "axios"
+
 import { useEffect } from "react"
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
@@ -6,6 +6,7 @@ import { detailProductService } from "../services/products.services"
 import { RingLoader } from "react-spinners"
 import {addWishListService}from "../services/wishlist.services"
 import {addCartService} from "../services/cart.services"
+import { Button } from "react-bootstrap"
 
 
 function ProductDetails() {
@@ -67,9 +68,9 @@ function ProductDetails() {
       <p>{description}</p>
       <h6>{tipo}</h6>
       <h5>{bodega}</h5>
-    <button onClick={handleAddWish}  >AÑADIR FAVORITOS</button>
+    <Button onClick={handleAddWish}>AÑADIR FAVORITOS</Button>
    
-    <button onClick={handleAddCart}>COMPRAR</button>
+    <Button onClick={handleAddCart}>COMPRAR</Button>
 
     </div>
   )
