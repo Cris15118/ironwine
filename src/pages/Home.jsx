@@ -4,6 +4,7 @@ import {RingLoader} from "react-spinners"
 import {getProductsService} from "../services/products.services"
 import { useEffect } from "react"
 import CardProducts from "../components/CardProducts"
+import ControlledCarousel from "../components/ControlledCarousel"
 
 
 function Home() {
@@ -38,6 +39,7 @@ function Home() {
   return (
     <div>
       <h1>AQUI ESTA TU CASA</h1>
+      <ControlledCarousel/>
       {allProducts.map ((eachProduct)=>{
         return(
           
