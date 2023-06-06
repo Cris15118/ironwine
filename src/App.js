@@ -14,7 +14,6 @@ import ProductDetails from "./pages/ProductDetails";
 import AdminHome from "./pages/admin/AdminHome";
 import AdminEdit from "./pages/admin/AdminEdit";
 import AdminCreate from "./pages/admin/AdminCreate";
-import Search from "./components/Search";
 import { useState } from "react";
 import IsPrivateAdmin from "./components/auth/IsPrivateAdmin";
 import PaymentSuccess from "./components/payment/PaymentSuccess";
@@ -35,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <NavBar mostrarOcultarLogin={mostrarOcultarLogin} />
-      <Search />
+    
       <Routes>       
         <Route
           path="/profile"

@@ -17,6 +17,8 @@ function ControlledCarousel() {
         className="d-block w-100"
         src={carrusel1Img}
         alt="First slide"
+        height={300}
+        
         
       />
       <Carousel.Caption>
@@ -29,7 +31,8 @@ function ControlledCarousel() {
         className="d-block w-100"
         src={carrusel2Img}
         alt="Second slide"
-       
+        height={300}
+      
       />
 
       <Carousel.Caption>
@@ -42,6 +45,7 @@ function ControlledCarousel() {
         className="d-block w-100"
         src={carrusel3Img}
         alt="Third slide"
+        height={300}
        
       />
 

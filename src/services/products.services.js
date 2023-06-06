@@ -8,8 +8,10 @@ const detailProductService = (productId)=>{
     return service.get(`/products/${productId}`)
 }
 
+
+
 export{
     getProductsService,
-    detailProductService
+    detailProductService,
     
 }
