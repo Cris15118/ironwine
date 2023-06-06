@@ -10,7 +10,7 @@ function Footer() {
 
          
           <Link to="/" className= "col-12 col-md-3 d-flex aling-items-center justyfy-content-center" >
-            <img src={ironWineImg} alt="logo" className="mx-2" width={100} />
+            <img src={ironWineImg} alt="logo" className="mx-2" height={90} />
           </Link>
           <ul className="col-12 col-md-3 list-unstyled">
             <li className="font-weight-bold mb-2">IRONWINE</li>
@@ -21,12 +21,18 @@ function Footer() {
             <li className="font-weight-bold mb-2">ATENCIÓN AL CLIENTE</li>
             <li className="text-center">L-J 9 a 18 / V 9 a 15</li>
             <li className="text-center"><i class="bi bi-telephone"/> 900 000 000</li>
-            <li className="text-center"> info@ironwine.es</li>
+            <li className="text-center"><i class="bi bi-envelope-at"/> info@ironwine.es</li>
           </ul>
           <ul className="col-12 col-md-3 list-unstyled">
             <li className="font-weigth-bold mb-2">SIGUENOS</li>
-            <li className="d-flex justyfy-content-betwen"><i className="bi bi-facebook"/> </li>
-            <li className="text-center"> info@ironwine.es</li>
+
+            <li className="d-flex justify-content-between">
+            <Link to={"https://www.facebook.com/"} className="text-reset"> <i className="bi bi-facebook"/> </Link> 
+            <Link to={"https://www.instagram.com/"} className="text-reset"> <i className="bi bi-instagram"/></Link> 
+            <Link to={"https://twitter.com/"} className="text-reset"> <i className="bi bi-twitter"/></Link> 
+
+              </li>
+
           </ul>
          </nav>
 

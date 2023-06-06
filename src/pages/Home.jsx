@@ -5,7 +5,7 @@ import {getProductsService} from "../services/products.services"
 import { useEffect } from "react"
 import CardProducts from "../components/CardProducts"
 import ControlledCarousel from "../components/ControlledCarousel"
-
+import CardGroup from 'react-bootstrap/CardGroup'
 
 function Home() {
   const navigate = useNavigate
@@ -40,6 +40,7 @@ function Home() {
     <div>
       <h1>AQUI ESTA TU CASA</h1>
       <ControlledCarousel/>
+      <CardGroup>
       {allProducts.map ((eachProduct)=>{
         return(
           
@@ -49,6 +50,7 @@ function Home() {
           </div>
         )
       })}
+      </CardGroup>
     </div>
   )
 }
