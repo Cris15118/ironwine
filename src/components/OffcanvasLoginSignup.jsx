@@ -1,13 +1,15 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
-
+import ToastMessage from "./ToastMessage";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useState } from "react";
-function OffcanvasLoginSignup({ show, handleClose, mostrarOcultarLogin }) {
+import Button from 'react-bootstrap/Button';
 
-  const [key, setKey] = useState('signup'); // para controlar el cambio de tabs
+function OffcanvasLoginSignup({ show, handleClose, mostrarOcultarLogin,setShow }) {
+  const [key, setKey] = useState("signup"); // para controlar el cambio de tabs
+  const [showToast, setShowToast] = useState(false);
   return (
     <Offcanvas
       show={show}
@@ -21,19 +23,24 @@ function OffcanvasLoginSignup({ show, handleClose, mostrarOcultarLogin }) {
       </Offcanvas.Header>
 
       <Offcanvas.Body>
-        <Tabs  activeKey={key} onSelect={(k) => setKey(k)}      
+        <Tabs
+          activeKey={key}
+          onSelect={(k) => setKey(k)}
           id="justify-tab-example"
           className="mb-3"
           justify
         >
-          <Tab eventKey="signup" title="Signup"  >
-            <Signup setKey={setKey} />
+          <Tab eventKey="signup" title="Signup">
+            <Signup setKey={setKey} show={showToast} setShow={setShowToast}/>
           </Tab>
-          
-          <Tab eventKey="login" title="Login" >
-            <Login mostrarOcultarLogin={mostrarOcultarLogin}   />
+
+          <Tab eventKey="login" title="Login">
+            <Login mostrarOcultarLogin={mostrarOcultarLogin}  />
           </Tab>
         </Tabs>
+        
+        <ToastMessage setShow={setShowToast} show={showToast} messageTitle={"Usuario Registrado."} message={"Usuario registrado. Ya puede loguearse."}/>
+
       </Offcanvas.Body>
     </Offcanvas>
   );

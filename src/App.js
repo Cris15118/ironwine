@@ -29,14 +29,13 @@ function App() {
     console.log("entra handleClose")
     setShow(false);
   }
-
+ 
   const mostrarOcultarLogin = () => setShow(!show);
 
   return (
     <div className="App">
       <NavBar mostrarOcultarLogin={mostrarOcultarLogin} />
       <Search />
-      
       <Routes>       
         <Route
           path="/profile"
@@ -64,6 +63,7 @@ function App() {
       </Routes>
 
       <OffcanvasLoginSignup show={show} handleClose={handleClose} mostrarOcultarLogin={mostrarOcultarLogin}/>
+
       <Footer/>
     </div>
   );

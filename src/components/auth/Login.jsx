@@ -6,7 +6,9 @@ import { AuthContext } from "../../context/auth.context";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-function Login({mostrarOcultarLogin}) { //funcion para ocultar formularios
+
+function Login({ mostrarOcultarLogin }) {
+  //funcion para ocultar formularios
   const { authenticateUser } = useContext(AuthContext); // trae la funcion de context
 
   const [email, setEmail] = useState("");
@@ -24,12 +26,12 @@ function Login({mostrarOcultarLogin}) { //funcion para ocultar formularios
         email,
         password,
       });
-      console.log(response);
+
       localStorage.setItem("authToken", response.data.authToken);
       //2. verificamos el token para saber quien es el usuario
       await authenticateUser();
-      mostrarOcultarLogin() // cierra offcanvas de los formularios
-     // navigate("/profile");
+      mostrarOcultarLogin(); // cierra offcanvas de los formularios
+      // navigate("/profile");
     } catch (err) {
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);
@@ -40,36 +42,40 @@ function Login({mostrarOcultarLogin}) { //funcion para ocultar formularios
   };
 
   return (
-    <Card className="login-form">
-      <h3>Log In</h3>
-      <Card.Body>
-        <Form onSubmit={handleLogin}>
-          <Form.Group className="mb-3">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-          
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-          </Form.Group>
-          <Button variant="outline-success" type="submit">
-            Login
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <div>
+   
+      <Card className="login-form">
+        <h3>Log In</h3>
+        <Card.Body>
+          <Form onSubmit={handleLogin}>
+            <Form.Group className="mb-3">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+            </Form.Group>
+            <Button variant="outline-success" type="submit">
+              Login
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+
+    </div>
   );
 }
 
