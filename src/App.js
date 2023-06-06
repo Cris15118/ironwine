@@ -19,6 +19,7 @@ import { useState } from "react";
 import IsPrivateAdmin from "./components/auth/IsPrivateAdmin";
 import PaymentSuccess from "./components/payment/PaymentSuccess";
 import OffcanvasLoginSignup from "./components/OffcanvasLoginSignup";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
     <div className="App">
       <NavBar mostrarOcultarLogin={mostrarOcultarLogin} />
       <Search />
-
+      
       <Routes>       
         <Route
           path="/profile"
@@ -63,7 +64,7 @@ function App() {
       </Routes>
 
       <OffcanvasLoginSignup show={show} handleClose={handleClose} mostrarOcultarLogin={mostrarOcultarLogin}/>
-
+      <Footer/>
     </div>
   );
 }
