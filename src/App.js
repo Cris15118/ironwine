@@ -16,16 +16,18 @@ import AdminEdit from "./pages/admin/AdminEdit";
 import AdminCreate from "./pages/admin/AdminCreate";
 import Search from "./components/Search";
 import { useState } from "react";
-import Offcanvas from "react-bootstrap/Offcanvas";
 import IsPrivateAdmin from "./components/auth/IsPrivateAdmin";
 import PaymentSuccess from "./components/payment/PaymentSuccess";
 import OffcanvasLoginSignup from "./components/OffcanvasLoginSignup";
-//import Signup from "./components/auth/Signup";
+
 
 function App() {
   //para Offcanvas
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    console.log("entra handleClose")
+    setShow(false);
+  }
 
   const mostrarOcultarLogin = () => setShow(!show);
 
@@ -60,8 +62,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-    
-        <OffcanvasLoginSignup show={show} onHide={handleClose} mostrarOcultarLogin={mostrarOcultarLogin}/>
+      <OffcanvasLoginSignup show={show} handleClose={handleClose} mostrarOcultarLogin={mostrarOcultarLogin}/>
+
     </div>
   );
 }

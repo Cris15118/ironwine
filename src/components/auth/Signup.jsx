@@ -4,7 +4,7 @@ import { signupService } from "../../services/auth.services";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-function Signup() {
+function Signup({setSelectedTabName}) { // seleccionar login al haberte logueado
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
@@ -16,16 +16,22 @@ function Signup() {
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
 
+  const resetInputs = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+  };
   const handleSignup = async (event) => {
     event.preventDefault();
 
     try {
       const user = { username, email, password };
       await signupService(user);
-     
+      resetInputs(); // limpia todos los campos
+      setSelectedTabName("login")
       navigate("/");
-      
     } catch (err) {
+      console.log(err)
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);
       } else {
