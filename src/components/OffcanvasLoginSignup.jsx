@@ -39,7 +39,7 @@ function OffcanvasLoginSignup({ show, handleClose, mostrarOcultarLogin,setShow }
           </Tab>
         </Tabs>
         
-        <ToastMessage setShow={setShowToast} show={showToast} messageTitle={"Usuario Registrado."} message={"Usuario registrado. Ya puede loguearse."}/>
+        <ToastMessage setShow={setShowToast} bgColor={"green"} textColor={"white"} show={showToast} messageTitle={"Usuario Registrado."} message={"Usuario registrado. Ya puede loguearse."}/>
 
       </Offcanvas.Body>
     </Offcanvas>

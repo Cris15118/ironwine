@@ -13,9 +13,12 @@ const pullWishListService = (productId)=>{
     return service.patch(`/wishlist/${productId}/pull`)
 }
 
-
+const isInWishList=(productId)=>{
+    return service.get(`/wishlist/in/${productId}`)
+}
 export  {
     allwishListService,
     addWishListService,
-    pullWishListService
+    pullWishListService,
+    isInWishList
 }

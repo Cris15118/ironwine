@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
 
-function ToastMessage({messageTitle,message,setShow,show}) {
+function ToastMessage({messageTitle,message,setShow,show,bgColor,textColor}) {
     const [position, setPosition] = useState('top-end');
     
   return (
@@ -14,7 +14,7 @@ function ToastMessage({messageTitle,message,setShow,show}) {
       style={{ zIndex: 1 }}
     >
       <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
-          <Toast.Header style={{backgroundColor:"green",color:"white"}}>
+          <Toast.Header style={{backgroundColor:bgColor,color:textColor}}>
             <img
               src="holder.js/20x20?text=%20"
               className="rounded me-2"
