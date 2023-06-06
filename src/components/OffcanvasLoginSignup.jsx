@@ -7,7 +7,7 @@ import Tabs from "react-bootstrap/Tabs";
 import { useState } from "react";
 function OffcanvasLoginSignup({ show, handleClose, mostrarOcultarLogin }) {
 
-    const [selectedTabName,setSelectedTabName]=useState("signup")
+  const [key, setKey] = useState('signup'); // para controlar el cambio de tabs
   return (
     <Offcanvas
       show={show}
@@ -21,16 +21,17 @@ function OffcanvasLoginSignup({ show, handleClose, mostrarOcultarLogin }) {
       </Offcanvas.Header>
 
       <Offcanvas.Body>
-        <Tabs  activeKey={selectedTabName}       
+        <Tabs  activeKey={key} onSelect={(k) => setKey(k)}      
           id="justify-tab-example"
           className="mb-3"
           justify
         >
-          <Tab eventKey="signup" title="Signup" onSelect={(e)=>{setSelectedTabName("signup")}} >
-            <Signup setSelectedTabName={setSelectedTabName} />
+          <Tab eventKey="signup" title="Signup"  >
+            <Signup setKey={setKey} />
           </Tab>
+          
           <Tab eventKey="login" title="Login" >
-            <Login mostrarOcultarLogin={mostrarOcultarLogin}  onSelect={(e)=>{setSelectedTabName("login")}} />
+            <Login mostrarOcultarLogin={mostrarOcultarLogin}   />
           </Tab>
         </Tabs>
       </Offcanvas.Body>
