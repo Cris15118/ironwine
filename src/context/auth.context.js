@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { verifyService } from "../services/auth.services";
 import {RingLoader} from "react-spinners"
+import { useNavigate } from "react-router";
 
 const AuthContext = createContext()
 
@@ -10,6 +11,7 @@ function AuthWrapper(props) {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false)
     const [ user, setUser ] = useState(null)
     const [ isLoading, setIsLoading ] = useState(true)
+    const navigate = useNavigate()
   
     useEffect(() => {
       authenticateUser()
@@ -22,18 +24,25 @@ function AuthWrapper(props) {
         
         const response = await verifyService()
        
-        if(response) // si no esta logueado
-        {
-         
+       
           console.log("token validado")
           setIsLoggedIn(true)
           setUser(response.data.payload)
           setIsLoading(false)
-        }
         
-  
+     
+        switch(response.data.payload.role) // depende del usuario te redirige a su pagina home
+        {
+          case "user": navigate("/")
+          break
+          case "admin" : navigate("/admin")
+          break
+          default : navigate("/")
+          break
+        }
+     
       } catch (error) {
-        console.log("token invalido o no hay token")
+        console.log("token invalido o no hay token",error)
         
         setIsLoggedIn(false)
         setUser(null)

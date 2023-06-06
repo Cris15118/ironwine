@@ -31,6 +31,7 @@ function Profile() {
   useEffect(() => {
     getData();
   }, []);
+  
   if (isLoading) {
     return (
       <div className="spinner">

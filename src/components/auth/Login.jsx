@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 
 function Login({ mostrarOcultarLogin }) {
   //funcion para ocultar formularios
-  const { authenticateUser } = useContext(AuthContext); // trae la funcion de context
+  const { authenticateUser,user } = useContext(AuthContext); // trae la funcion de context
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,10 +29,12 @@ function Login({ mostrarOcultarLogin }) {
 
       localStorage.setItem("authToken", response.data.authToken);
       //2. verificamos el token para saber quien es el usuario
-      await authenticateUser();
+      await authenticateUser(); 
+     
       mostrarOcultarLogin(); // cierra offcanvas de los formularios
       // navigate("/profile");
     } catch (err) {
+     
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);
       } else {

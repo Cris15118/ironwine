@@ -5,7 +5,7 @@ import Signup from "../components/auth/Signup";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useState } from "react";
-import Button from 'react-bootstrap/Button';
+
 
 function OffcanvasLoginSignup({ show, handleClose, mostrarOcultarLogin,setShow }) {
   const [key, setKey] = useState("signup"); // para controlar el cambio de tabs
