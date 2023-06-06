@@ -28,19 +28,8 @@ function AuthWrapper(props) {
           console.log("token validado")
           setIsLoggedIn(true)
           setUser(response.data.payload)
-          setIsLoading(false)
-        
-     
-        switch(response.data.payload.role) // depende del usuario te redirige a su pagina home
-        {
-          case "user": navigate("/")
-          break
-          case "admin" : navigate("/admin")
-          break
-          default : navigate("/")
-          break
-        }
-     
+          setIsLoading(false)          
+          return response.data.payload
       } catch (error) {
         console.log("token invalido o no hay token",error)
         

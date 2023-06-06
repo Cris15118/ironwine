@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginService } from "../../services/auth.services";
 import Button from "react-bootstrap/Button";
@@ -29,7 +29,18 @@ function Login({ mostrarOcultarLogin }) {
 
       localStorage.setItem("authToken", response.data.authToken);
       //2. verificamos el token para saber quien es el usuario
-      await authenticateUser(); 
+      const payload=await authenticateUser(); 
+
+      switch(payload.role) // segun el rol redirige a diferente pagina home
+      {
+        case "user": navigate("/")
+        break
+        case "admin": navigate("/admin")
+        break
+        default: navigate("/")
+        break
+      }
+      console.log("PAYLOAD ",payload)
      
       mostrarOcultarLogin(); // cierra offcanvas de los formularios
       // navigate("/profile");
@@ -42,7 +53,20 @@ function Login({ mostrarOcultarLogin }) {
       }
     }
   };
-
+useEffect(()=>{
+  if(user)
+  {
+    switch(user.role) // depende del usuario te redirige a su pagina home
+    {
+      case "user": navigate("/")
+      break
+      case "admin" : navigate("/admin")
+      break
+      default : navigate("/")
+      break
+    }
+  }
+},[])
   return (
     <div>
    

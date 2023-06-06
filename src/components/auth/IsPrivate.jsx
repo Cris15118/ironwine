@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom"
 
 function IsPrivate(props) {
     const {user} = useContext(AuthContext)
+    console.log("USEEEER",user)
     if(user && user.role==="user"){
         return props.children
     }else if (user && user.role==="admin"){ // redirige a admin si eres admin e intentas ir a una pagina de usuario

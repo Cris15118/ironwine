@@ -9,7 +9,7 @@ import IsPrivate from "./components/auth/IsPrivate";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
-import Payment from "./pages/Payment";
+
 import ProductDetails from "./pages/ProductDetails";
 import AdminHome from "./pages/admin/AdminHome";
 import AdminEdit from "./pages/admin/AdminEdit";
@@ -49,7 +49,7 @@ function App() {
 
         {/* cart */}
         <Route path="/cart" element={<IsPrivate><Cart /></IsPrivate>} />
-        <Route path="/payment" element={<IsPrivate><Payment /></IsPrivate>} />
+        
         <Route path="/products/:id/details" element={<ProductDetails />} />
 
         {/* admin */}
