@@ -7,12 +7,15 @@ import CardProducts from "../components/CardProducts"
 import ControlledCarousel from "../components/ControlledCarousel"
 import CardGroup from 'react-bootstrap/CardGroup'
 import Search from "../components/Search"
+import ModalCookies from "../components/ModalCookies"
+
+
 
 function Home() {
   const navigate = useNavigate
   const [allProducts, setAllProducts]= useState("")
   const [isLoading, setIsLoading]= useState(true)
-  const [searchInput, setSearchInput]= useState("")
+  
   const [filteredProducts, setFilteredProducts] = useState([])
 
    useEffect(()=>{
@@ -57,6 +60,7 @@ function Home() {
     <div>
       <h1>AQUI ESTA TU CASA</h1>
       <div>
+     
             <Search searchWine = {searchWine}/>
           </div>
       <ControlledCarousel/>
@@ -66,13 +70,13 @@ function Home() {
           
           <div key={eachProduct._id} >
             <CardProducts cardProduct = {eachProduct}/>
-            
+           
           </div>
           
         )
       })}
       </CardGroup>
-      
+      <ModalCookies/>
     </div>
   )
 }

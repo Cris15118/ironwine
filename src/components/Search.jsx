@@ -18,13 +18,14 @@ function Search({searchWine}) {
     <>
       <InputGroup className="mb-3">
         <Button variant="outline-secondary" id="button-addon1">
-          Button
+        <i className="bi bi-search"/>
         </Button>
         <Form.Control
           aria-label="Example text with button addon"
           aria-describedby="basic-addon1"
           value={searchInput}
           onChange={handleSearch}
+        
         />
       </InputGroup>
 
