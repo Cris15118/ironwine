@@ -20,8 +20,8 @@ function Footer() {
           <ul className="col-12 col-md-3 list-unstyled">
             <li className="font-weight-bold mb-2">ATENCIÓN AL CLIENTE</li>
             <li className="text-center">L-J 9 a 18 / V 9 a 15</li>
-            <li className="text-center"><i class="bi bi-telephone"/> 900 000 000</li>
-            <li className="text-center"><i class="bi bi-envelope-at"/> info@ironwine.es</li>
+            <li className="text-center"><i className="bi bi-telephone"/> 900 000 000</li>
+            <li className="text-center"><i className="bi bi-envelope-at"/> info@ironwine.es</li>
           </ul>
           <ul className="col-12 col-md-3 list-unstyled">
             <li className="font-weigth-bold mb-2">SIGUENOS</li>

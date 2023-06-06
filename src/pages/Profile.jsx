@@ -8,7 +8,7 @@ import { allwishListService } from "../services/wishlist.services";
 function Profile() {
   const [historial, setHistorial] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [wishlist,setWishlist]=useState()
+  const [wishlist,setWishlist]=useState([])
   const navigate = useNavigate();
 
   const getData = async () => {
