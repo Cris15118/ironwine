@@ -17,10 +17,11 @@ function ControlledCarousel() {
         className="d-block w-100"
         src={carrusel1Img}
         alt="First slide"
+        
       />
       <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <h3>Disfruta con los cinco sentidos</h3>
+        <p>De las mejores bodegas a tu mesa</p>
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
@@ -28,11 +29,12 @@ function ControlledCarousel() {
         className="d-block w-100"
         src={carrusel2Img}
         alt="Second slide"
+       
       />
 
       <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h3>La mejor selección de vinos</h3>
+        
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
@@ -40,13 +42,12 @@ function ControlledCarousel() {
         className="d-block w-100"
         src={carrusel3Img}
         alt="Third slide"
+       
       />
 
       <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-        </p>
+        <h3>Viñedos cuidados con mucho cariño</h3>
+        
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
