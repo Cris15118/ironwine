@@ -7,7 +7,7 @@ import CardProducts from "../components/CardProducts"
 import ControlledCarousel from "../components/ControlledCarousel"
 import CardGroup from 'react-bootstrap/CardGroup'
 import Search from "../components/Search"
-import ModalCookies from "../components/ModalCookies"
+
 
 
 
@@ -76,7 +76,7 @@ function Home() {
         )
       })}
       </CardGroup>
-      <ModalCookies/>
+     
     </div>
   )
 }
