@@ -12,8 +12,8 @@ const PaymentSuccess = () => {
   const [isFetching, setIsFetching] = useState(true);
   const addHistorial = async () => {
     try {
-      await addHistorialService();
-      await deleteCartService();
+      await addHistorialService(); // añade las compras al historial
+      await deleteCartService(); // borra el carrito del usuario
     } catch (error) {
       console.log(error);
       navigate("/error");

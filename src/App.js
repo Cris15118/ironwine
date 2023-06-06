@@ -15,15 +15,11 @@ import AdminHome from "./pages/admin/AdminHome";
 import AdminEdit from "./pages/admin/AdminEdit";
 import AdminCreate from "./pages/admin/AdminCreate";
 import Search from "./components/Search";
-
-//offcanvas
-import Login from "./components/auth/Login"
-import Signup from "./components/auth/Signup"
-
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import IsPrivateAdmin from "./components/auth/IsPrivateAdmin";
 import PaymentSuccess from "./components/payment/PaymentSuccess";
+import OffcanvasLoginSignup from "./components/OffcanvasLoginSignup";
 //import Signup from "./components/auth/Signup";
 
 function App() {
@@ -64,21 +60,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      <Offcanvas
-        show={show}
-        onHide={handleClose}
-        placement="end"
-        name="end"
-        backdrop={"truenpm"}
-      >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>CUENTA EN IRONWINE</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <Login mostrarOcultarLogin={mostrarOcultarLogin}/>
-          <Signup />
-        </Offcanvas.Body>
-      </Offcanvas>
+    
+        <OffcanvasLoginSignup show={show} onHide={handleClose} mostrarOcultarLogin={mostrarOcultarLogin}/>
     </div>
   );
 }

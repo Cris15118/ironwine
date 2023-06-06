@@ -5,8 +5,8 @@ function CartProducts(props) {
   return (
     <div>
       <Link to={`/products/${_id}/details`}>
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={image} />
+      <Card style={{ width: "10rem" }}>
+        <Card.Img variant="top" src={image} width={40}/>
         <Card.Body>
           <Card.Title>{name}</Card.Title>
           <Card.Text>{price}</Card.Text>
