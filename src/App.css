@@ -1,54 +1,94 @@
+/* color marron-dorado #857550 */
+/*color marron dorado light #b7aa8d*/
+/* color footer #857550 */
+
+
 .App {
   text-align: center;
+  height: 100%;
 }
 
-.spinner{
+.spinner {
   color: #660033;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.signup-form,.login-form{
+.signup-form,
+.login-form {
   margin-bottom: 20px;
-
 }
-h3{
+h3 {
   text-align: center;
 }
 
-
 /* ADMIN CREATE FORM */
-.admin-create-form{
+.admin-create-form {
   margin: auto;
   width: 75%;
 }
 /* USER HOME */
- .carousel .carousel-item {
+.carousel .carousel-item {
   height: 300px;
-  
 }
 
 .carousel-item img {
-    position: absolute;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    min-height: 300px;
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  min-height: 300px;
 }
-.container-all{
- margin: auto;
- width: 70%;
-
-} 
-.card img{
+.container-all {
+  margin: auto;
+  width: 70%;
+}
+.card img {
   height: 120px;
   width: auto !important;
 }
-.card a{
+.card a {
   text-decoration: none;
+  color:black
 }
-.grid-products{
+.grid-products {
   display: flex;
   flex-wrap: wrap;
-  gap:10px;
+  gap: 10px;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+/* NAV BAR */
+.navbar{ /*imagen de logo*/
+padding: 0;
+background-color: #857550;
+
+}
+.navbar a{
+  color:white;
+}
+
+.bi-search{
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  color:gray;
+
+}
+
+/* SEARCH BAR*/
+.search-bar{
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 0 10px;  
+ 
+}
+/*FOOTER*/
+
+footer{
+  background-color: #857550 !important;
 }

@@ -15,22 +15,22 @@ function Search({searchWine}) {
   
 
   return (
-    <>
+    <div className='search-bar'>
       <InputGroup className="mb-3">
-        <Button variant="outline-secondary" id="button-addon1">
-        <i className="bi bi-search"/>
-        </Button>
+        
+      <i className ="bi bi-search"  ></i>
         <Form.Control
-          aria-label="Example text with button addon"
-          aria-describedby="basic-addon1"
+          
           value={searchInput}
+          type="text"
           onChange={handleSearch}
+          placeholder='Busque el producto que desee'
         
         />
       </InputGroup>
 
      
-    </>
+    </div>
   )
 }
 

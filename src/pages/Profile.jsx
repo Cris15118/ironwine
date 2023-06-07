@@ -44,7 +44,7 @@ function Profile() {
       <h1>Perfil de</h1>
       <h3>Historial de compras</h3>
       <CardGroup>
-      {historial.map((eachCompra) => {
+      {historial.length>0&&historial.map((eachCompra) => {
         return <div key={eachCompra._id}>{eachCompra.productId.name}
         <CardProducts cardProduct={{name:eachCompra.productId.name,price:eachCompra.productId.price,image:eachCompra.productId.image,_id:eachCompra.productId._id}}/>
         </div>;

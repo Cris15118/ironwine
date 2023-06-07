@@ -4,20 +4,20 @@ import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import ironWineImg from "../assets/ironwine.png";
 
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Offcanvas from "react-bootstrap/Offcanvas";
 
 function NavbarRes({ mostrarOcultarLogin }) {
   // pasamos funcion de mostrar/ocultar login
   const navigate = useNavigate();
   const { isLoggedIn, authenticateUser, user } = useContext(AuthContext);
-  const [linkHome,setLinkHome]=useState("/") // depende del rol la pagina home
+  const [linkHome, setLinkHome] = useState("/"); // depende del rol la pagina home
+
   const handleLogout = () => {
-  
     localStorage.removeItem("authToken");
     authenticateUser();
     navigate("/");
@@ -26,63 +26,86 @@ function NavbarRes({ mostrarOcultarLogin }) {
     mostrarOcultarLogin();
   };
 
-  useEffect(()=>{
-
-    if(user)
-    {
-      switch(user.role) // depende del usuario te redirige a su pagina home
-      {
-        case "user": setLinkHome("/")
-        break
-        case "admin" : setLinkHome("/admin")
-        break
-        default : navigate("/")
-        break
+  useEffect(() => {
+    if (user) {
+      switch (
+        user.role // depende del usuario te redirige a su pagina home
+      ) {
+        case "user":
+          setLinkHome("/");
+          break;
+        case "admin":
+          setLinkHome("/admin");
+          break;
+        default:
+          navigate("/");
+          break;
       }
     }
-    
-  },[])
+  }, []);
 
   return (
-    <div>
-    
-      <Link to={linkHome}>
-       
-        <img src={ironWineImg} alt="logo" width={80} />{" "}
-      </Link>
-      <Link to={linkHome}>Home</Link>
-      {isLoggedIn && user.role === "user" && (
-        <Link to={"/profile"}>Perfil</Link>
-      )}
-       
-      {!isLoggedIn && <Button onClick={handleLogin}>Login/Signup</Button>}
-      {isLoggedIn && user.role === "user" && <Link to={"/cart"}>Carrito</Link>}
-      {isLoggedIn && user.role === "admin" && <Link to="/admin">Admin</Link>}
-      {isLoggedIn && <Button onClick={handleLogout}>Cerrar sesion</Button>}
-
-
+ 
       <>
-      {[ 'md'].map((expand) => (
-        <Navbar key={expand} bg="light" expand={expand} className="mb-3">
-          <Container fluid>
-            <Navbar.Brand href={linkHome}>Navbar Offcanvas</Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Offcanvas
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav className="justify-content-end flex-grow-1 pe-3">
-                {isLoggedIn && user.role === "user" && <Nav.Link href={linkHome}>Home</Nav.Link>}
-                  {isLoggedIn && user.role === "admin" &&   <Nav.Link href="/admin">Admin</Nav.Link>}
-                 
-                  {/* <NavDropdown
+      
+          <Navbar key={"md"} expand={"md"} >
+            <Container fluid>
+           
+                
+                  <Navbar.Brand href={linkHome}>
+                    <img
+                     src={ironWineImg} alt="logo" width={60}
+                     
+                      className="d-inline-block align-top"
+                      
+                    />
+                  </Navbar.Brand>
+               
+          
+              <Navbar.Brand href={linkHome}>IRONWINE</Navbar.Brand>
+              <Navbar.Toggle
+                aria-controls={`offcanvasNavbar-expand-${"md"}`}
+              />
+              <Navbar.Offcanvas
+                id={`offcanvasNavbar-expand-${"md"}`}
+                aria-labelledby={`offcanvasNavbarLabel-expand-${"md"}`}
+                placement="end"
+              >
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${"md"}`}>
+                    Offcanvas
+                  </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                    {((isLoggedIn && user.role !== "admin") || !isLoggedIn) && (
+                      <Nav.Link as={Link} to={linkHome}>
+                        Home
+                      </Nav.Link>
+                    )}
+                    {!isLoggedIn && (
+                      <Nav.Link as={Link}>
+                        <Button onClick={handleLogin} variant="outline-primary">
+                          Login/Signup
+                        </Button>
+                      </Nav.Link>
+                    )}
+                    {isLoggedIn && user.role === "admin" && (
+                      <Nav.Link as={Link} to="/admin">
+                        Admin
+                      </Nav.Link>
+                    )}
+                    {isLoggedIn && user.role === "user" && (
+                      <Nav.Link as={Link} to={"/profile"}>
+                        Perfil
+                      </Nav.Link>
+                    )}
+                    {isLoggedIn && user.role === "user" && (
+                      <Nav.Link as={Link} to={"/cart"}>
+                        Carrito
+                      </Nav.Link>
+                    )}
+                    {/* <NavDropdown
                     title="Dropdown"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
@@ -95,26 +118,22 @@ function NavbarRes({ mostrarOcultarLogin }) {
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown> */}
-                </Nav>
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                 
-                </Form>
-                {isLoggedIn &&  <Nav.Link > <Button onClick={handleLogout} variant="outline-danger">Cerrar sesion</Button></Nav.Link>}
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-      ))}
-    </>
+                  </Nav>
 
-
-    </div>
+                  {isLoggedIn && (
+                    <Nav.Link as={Link}>
+                      <Button onClick={handleLogout} variant="outline-warning">
+                        Cerrar sesion
+                      </Button>
+                    </Nav.Link>
+                  )}
+                </Offcanvas.Body>
+              </Navbar.Offcanvas>
+            </Container>
+          </Navbar>
+        
+      </>
+   
   );
 }
 

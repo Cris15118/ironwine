@@ -4,12 +4,12 @@ import {Link} from "react-router-dom"
 function Footer() {
   return (
     <div>
-      <footer className="text-white py-4 bg-dark">
+      <footer className="text-white py-1 bg-dark fixed-bottom">
         <div className="container">
           <nav className="row">
 
          
-          <Link to="/" className= "col-12 col-md-3 d-flex aling-items-center justyfy-content-center" >
+          <Link to="/" className= "col-12 col-md-3 d-flex aling-items-center justyfy-content-center " >
             <img src={ironWineImg} alt="logo" className="mx-2" height={90} />
           </Link>
           <ul className="col-12 col-md-3 list-unstyled">
