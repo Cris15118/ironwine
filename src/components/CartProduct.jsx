@@ -73,7 +73,7 @@ function CartProducts(props) {
           <Button className="btn-cart" onClick={handleRestarProducts} disabled={isLoading}>
             -
           </Button>
-          <Button className="btn-cart"  onClick={handleSumarProducts} disabled={isLoading}>
+          <Button className="btn-cart" onClick={handleSumarProducts} disabled={isLoading}>
             +
           </Button>
        
