@@ -33,7 +33,6 @@ function AdminCreate() {
       uploadData.append("image", e.target.files[0]); // image tiene que ser el mismo nombre q en el middleware uploader.single("image")
 
       const response = await uploadImageService(uploadData);
-      console.log(response.data.image);
       setImageUrl(response.data.image); // manda la url de la imagen al front end, usando imageUrl
       setFormInputs({ ...formInputs, image: response.data.image });
       setIsUploading(false);
@@ -44,17 +43,15 @@ function AdminCreate() {
 
   const handleInputsChange = (e) =>
     setFormInputs({ ...formInputs, [e.target.name]: e.target.value }); // actualiza el estado de la propiedad que cambie en ese momento
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsLoading(true);
-      //      await handleFileUpload(e);
-      console.log(formInputs);
-      const response = await createAdminService(formInputs);
-      console.log("producto creado", response);
+      setIsLoading(true);     
+       await createAdminService(formInputs);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+     
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
