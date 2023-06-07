@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { RingLoader } from "react-spinners";
-import { deleteCartService, getCartservice, getTotalCartService } from "../services/cart.services";
+import {
+  deleteCartService,
+  getCartservice,
+  getTotalCartService,
+} from "../services/cart.services";
 
 import CartProduct from "../components/CartProduct";
 import { Button } from "react-bootstrap";
@@ -16,11 +20,11 @@ function Cart() {
   const getData = async () => {
     setIsLoading(true);
     try {
-      const response = await getCartservice(); 
-      const responseTotal=await getTotalCartService()     
-      setProducts(response.data); 
-      console.log(responseTotal.data)
-      setTotal(responseTotal.data)     
+      const response = await getCartservice();
+      const responseTotal = await getTotalCartService();
+      setProducts(response.data);
+      console.log(responseTotal.data);
+      setTotal(responseTotal.data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -32,19 +36,18 @@ function Cart() {
     try {
       setIsLoading(true);
       const response = await deleteCartService(); // borrar todos los productos del carrito del usuario
-      const responseTotal=await getTotalCartService()
+      const responseTotal = await getTotalCartService();
       setProducts(response.data);
-      setTotal(responseTotal)
+      setTotal(responseTotal);
       setIsLoading(false);
       navigate("/");
     } catch (error) {
       navigate("/error");
     }
   };
- 
-  
+
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
   if (isLoading) {
@@ -58,31 +61,32 @@ function Cart() {
   return (
     <div>
       <h3>Carro de la compra</h3>
-      {products.map((eachProduct, index) => {
-        return (
-          <CartProduct
-            key={index}
-            cardProduct={eachProduct}
-            getData={getData}
-          />
-        );
-      })}
-
+      <div className="grid-products">
+        {products.map((eachProduct, index) => {
+          return (
+            <CartProduct
+              key={index}
+              cardProduct={eachProduct}
+              getData={getData}
+            />
+          );
+        })}
+      </div>
       {products.length > 0 && (
         <Button onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
       )}
-     
+
       <Button variant="primary" onClick={() => setModalShow(true)}>
         Pagar ahora
       </Button>
 
-      <ModalPago  price={total}
+      <ModalPago
+        price={total}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-        
-        <input name="total" value={total} disabled />
-      
+
+      <input name="total" value={total} disabled />
     </div>
   );
 }

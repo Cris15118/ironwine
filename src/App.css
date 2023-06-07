@@ -33,7 +33,9 @@ h3 {
 .carousel .carousel-item {
   height: 300px;
 }
-
+.card-body{
+  padding:0;
+}
 .carousel-item img {
   position: absolute;
   object-fit: cover;
@@ -49,14 +51,22 @@ h3 {
   height: 120px;
   width: auto !important;
 }
+.card{
+  border:none;
+}
 .card a {
   text-decoration: none;
   color:black
+}
+.card:hover{
+  -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15); 
+  box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);
 }
 .grid-products {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 15px;
 }
 .nav-link {
   display: flex;

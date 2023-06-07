@@ -60,7 +60,7 @@ function Home() {
       <div>
         <Search searchWine={searchWine} />
       </div>
-
+    
       <ControlledCarousel />
       <section id="products">
         <div className="grid-products">

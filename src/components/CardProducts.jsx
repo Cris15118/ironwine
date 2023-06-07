@@ -10,7 +10,7 @@ function CardProducts(props) {
         
           <Card.Body>
             <Card.Title>{name}</Card.Title>
-            <Card.Text>{price}</Card.Text>
+            <Card.Text>{price} €</Card.Text>
           </Card.Body>
         </Link>
       </Card>
