@@ -88,15 +88,15 @@ function ProductDetails() {
       <h6>{tipo}</h6>
       <h5>{bodega}</h5>
 
-      {isWishList ? (
+      {(isWishList || !isLoggedIn) ? (
         <Button onClick={handleAddWish} disabled>
           Añadir a Lista de Deseos
         </Button>
       ) : (
         <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
       )}
-
-      <Button onClick={handleAddCart}>Añadir a Carrito</Button>
+          {isLoggedIn?<Button onClick={handleAddCart}>Añadir a Carrito</Button>:<Button onClick={handleAddCart} disabled>Añadir a Carrito</Button>}
+      
       <Comentario />
       <ToastMessage
         setShow={setShowToast}

@@ -68,6 +68,7 @@ function Comentario() {
   return (
     <div>
       <div className="container-comentario">
+      {isLoggedIn&&
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Deja tu comentario</Form.Label>
@@ -80,13 +81,16 @@ function Comentario() {
               cols={90}
             />
           </Form.Group>
+      
           <Button variant="outline-success" type="submit" disabled={isLoading}>
             Enviar comentario
           </Button>
         </Form>
+    }
       </div>
       <div className="caja-comentarios">
         <h3>Comentarios</h3>
+        {allComentarios.length===0&&<h4>No hay ningún comentario</h4>}
         {allComentarios.map((eachComentario) => {
           return (
             <div>
