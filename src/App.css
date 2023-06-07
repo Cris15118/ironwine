@@ -1,13 +1,14 @@
 /* color marron-dorado #857550 */
 /*color marron dorado light #b7aa8d*/
 /* color footer #857550 */
-
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap');
 html, body {
   height: 100%;
 }
 .App {
   text-align: center;
   height: 100%;
+  
 }
 
 .spinner {
@@ -140,17 +141,38 @@ justify-content: center;
   font-weight: bolder;
 }
 
-.btn-pagar{
+.btn-vaciar{
  display: flex;
  justify-content: space-evenly;
  margin-top: 50px;
 }
-.btn-pagar Button{
- background-color:  #857550 ;
- border-color: cornsilk;
-}
-.btn-pagar p{
+
+.btn-vaciar p{
  font-size: 18px;
  font-weight: bolder;
  
+}
+.color-vaciar{
+  background-color: #7f1734 ;
+  font-weight: bolder;
+  border: #7f1734;
+}
+.color-pagar{
+  background-color:#00703c ;
+  font-weight: bolder;
+  border: #00703c;
+}
+.btn-añadir{
+  display: flex;
+ justify-content: space-evenly;
+ 
+ margin-top: 50px;
+}
+.btn-añadir Button{
+  background-color:  #857550 ;
+  border-color: cornsilk;
+  font-weight: bolder;
+}
+.container-details{
+  margin-top: 50px;
 }

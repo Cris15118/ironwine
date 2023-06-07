@@ -53,9 +53,9 @@ function Cart() {
 
       {/* solo se muestran si existen productos en el carrito */}
       {productsCart.length > 0 ? (
-        <div className="btn-pagar">
-          <Button onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
-          <Button variant="primary" onClick={() => setModalShow(true)}>
+        <div className="btn-vaciar">
+          <Button className="color-vaciar" onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
+          <Button className="color-pagar" variant="primary" onClick={() => setModalShow(true)}>
             Pagar ahora
           </Button>
           <ModalPago

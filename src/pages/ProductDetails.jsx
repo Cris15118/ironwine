@@ -13,6 +13,7 @@ import ToastMessage from "../components/ToastMessage";
 import Comentario from "../components/Comentario";
 import { AuthContext } from "../context/auth.context";
 import { GlobalContext } from "../context/cart.context";
+
 function ProductDetails() {
   const {  addProductCart } =    useContext(GlobalContext);
 
@@ -81,7 +82,8 @@ function ProductDetails() {
 
   const { name, image, price, tipo, bodega, description } = productDetail;
   return (
-    <div>
+    <div className="container-details">
+     
       <h3>{name}</h3>
       <img src={image} alt="vino" width={300} />
       <p>
@@ -90,16 +92,17 @@ function ProductDetails() {
       <p>{description}</p>
       <h6>{tipo}</h6>
       <h5>{bodega}</h5>
-
+      <div  className="btn-añadir">
       {(isWishList || !isLoggedIn) ? (
-        <Button onClick={handleAddWish} disabled>
+        
+        <Button style={{backgroundColor: "#857550", borderColor: "cornsilk"}} onClick={handleAddWish} disabled>
           Añadir a Lista de Deseos
         </Button>
       ) : (
         <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
       )}
-          {isLoggedIn?<Button onClick={handleAddCart}>Añadir a Carrito</Button>:<Button onClick={handleAddCart} disabled>Añadir a Carrito</Button>}
-      
+          {isLoggedIn?<Button  onClick={handleAddCart}>Añadir a Carrito</Button>:<Button onClick={handleAddCart} disabled>Añadir a Carrito</Button>}
+      </div>
       <Comentario />
       <ToastMessage
         setShow={setShowToast}

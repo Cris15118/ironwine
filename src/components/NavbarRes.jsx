@@ -105,7 +105,7 @@ function NavbarRes({ mostrarOcultarLogin }) {
                     {isLoggedIn && user.role === "user" && (
                       <Nav.Link as={Link} to={"/cart"} >
                        <i className="bi bi-cart4"/>  Carrito
-                       <span style={{backgroundColor:"red",color:"white"}} >{totalProductsCart}</span>
+                       <span style={{backgroundColor:"#56492c",color:"white", borderRadius: "20px", padding: "3px"}} >{totalProductsCart}</span>
                       </Nav.Link>
                     )}
                     {/* <NavDropdown
