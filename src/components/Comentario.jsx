@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,6 +6,7 @@ import {
   addComentarioService,
   allComentariosService,
 } from "../services/comentario.services";
+import { AuthContext } from "../context/auth.context";
 import { RingLoader } from "react-spinners";
 
 function Comentario() {
@@ -14,10 +15,18 @@ function Comentario() {
   const [formInput, setFormInput] = useState({
     comentario: "",
   });
-  const [allComentarios, setAllComentarios] = useState();
+  const { isLoggedIn} = useContext(AuthContext);
+  const [allComentarios, setAllComentarios] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getData();
+    if(isLoggedIn) // solo si esta logueado
+    {
+        getData();
+    }
+    else{
+        setIsLoading(false)
+    }
+   
   }, []);
   const getData = async () => {
     try {
@@ -39,6 +48,7 @@ function Comentario() {
     try {
       console.log(formInput);
       await addComentarioService(params.id, formInput);
+     
       getData();
 
       setIsLoading(false);

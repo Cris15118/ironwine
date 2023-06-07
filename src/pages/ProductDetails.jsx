@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { detailProductService } from "../services/products.services";
@@ -11,18 +11,18 @@ import { addCartService } from "../services/cart.services";
 import { Button } from "react-bootstrap";
 import ToastMessage from "../components/ToastMessage";
 import Comentario from "../components/Comentario";
-
+import { AuthContext } from "../context/auth.context";
 function ProductDetails() {
   const params = useParams();
   const navigate = useNavigate();
-
+  const { isLoggedIn } = useContext(AuthContext);
   const [productDetail, setProductDetail] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isWishList, setIsWishList] = useState(false);
   //toasts
   const [showToast, setShowToast] = useState(false);
   const [showToastCart, setShowToastCart] = useState(false);
-  
+
   const handleAddWish = async () => {
     try {
       await addWishListService(params.id);
@@ -43,8 +43,9 @@ function ProductDetails() {
   const getIsInWishList = async () => {
     try {
       const isInWL = await isInWishList(params.id);
-      console.log("isInWL", isInWL.data);
-      setIsWishList(isInWL.data);
+      if (isInWL) {
+        setIsWishList(isInWL.data);
+      }
     } catch (error) {
       console.log(error);
       navigate("/error");
@@ -53,7 +54,9 @@ function ProductDetails() {
 
   useEffect(() => {
     getData();
-    getIsInWishList();
+    if (isLoggedIn) {
+      getIsInWishList();
+    }
   }, []);
 
   const getData = async () => {
@@ -76,7 +79,6 @@ function ProductDetails() {
   const { name, image, price, tipo, bodega, description } = productDetail;
   return (
     <div>
-      
       <h3>{name}</h3>
       <img src={image} alt="vino" width={300} />
       <p>
@@ -95,7 +97,7 @@ function ProductDetails() {
       )}
 
       <Button onClick={handleAddCart}>Añadir a Carrito</Button>
-       <Comentario/> 
+      <Comentario />
       <ToastMessage
         setShow={setShowToast}
         bgColor={"#fff08b"}
