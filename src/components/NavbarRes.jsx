@@ -101,8 +101,8 @@ function NavbarRes({ mostrarOcultarLogin }) {
                       </Nav.Link>
                     )}
                     {isLoggedIn && user.role === "user" && (
-                      <Nav.Link as={Link} to={"/cart"}>
-                        Carrito
+                      <Nav.Link as={Link} to={"/cart"} >
+                       <i className="bi bi-cart4"/>  Carrito
                       </Nav.Link>
                     )}
                     {/* <NavDropdown
