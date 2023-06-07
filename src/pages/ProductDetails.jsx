@@ -22,7 +22,7 @@ function ProductDetails() {
   //toasts
   const [showToast, setShowToast] = useState(false);
   const [showToastCart, setShowToastCart] = useState(false);
-
+  
   const handleAddWish = async () => {
     try {
       await addWishListService(params.id);
