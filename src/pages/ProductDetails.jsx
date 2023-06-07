@@ -76,7 +76,7 @@ function ProductDetails() {
   const { name, image, price, tipo, bodega, description } = productDetail;
   return (
     <div>
-      <Comentario/>
+      
       <h3>{name}</h3>
       <img src={image} alt="vino" width={300} />
       <p>
@@ -95,6 +95,7 @@ function ProductDetails() {
       )}
 
       <Button onClick={handleAddCart}>Añadir a Carrito</Button>
+      <Comentario/>
       <ToastMessage
         setShow={setShowToast}
         bgColor={"#fff08b"}

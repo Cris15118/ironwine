@@ -104,3 +104,29 @@ background-color: #857550;
 footer{
   background-color: #857550 !important;
 }
+
+.container-comentario{
+  display: flex;
+justify-content: center;
+  margin-top: 30px;
+}
+
+.comentarios{
+  border:1px solid rgb(168, 168, 168) ;
+  border-radius: 8px;
+  width: 300px;
+  height: auto;
+  text-align: justify;
+  padding: 10px 10px;
+  margin: 20px;
+ 
+
+}
+.caja-comentarios{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.caja-comentarios h3{
+  margin: 20px;
+}

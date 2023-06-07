@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import {addComentarioService, allComentariosService} from "../services/comentario.services"
 import { RingLoader } from "react-spinners";
-import { detailProductService } from "../services/products.services";
+
 
 function Comentario() {
     const navigate = useNavigate()
@@ -23,7 +23,7 @@ function Comentario() {
      const response =  await allComentariosService(params.id, formInput)
             setAllComentarios(response.data)
             setIsLoading(false)
-            
+            console.log(response.data[0].user.username)
         } catch (error) {
             navigate("/error")
         }
@@ -55,7 +55,8 @@ if (isLoading) {
     );
   }
   return (
-    <div>
+    <div >
+        <div className="container-comentario">
         <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" >
         <Form.Label>Deja tu comentario</Form.Label>
@@ -65,6 +66,7 @@ if (isLoading) {
         value={formInput.comentario}
         onChange={handleInputChange}
         rows={4}
+        cols={90}
          />
       </Form.Group>
       <Button
@@ -76,14 +78,23 @@ if (isLoading) {
             </Button>
 
         </Form>
+        </div>
+        <div className="caja-comentarios">
+        <h3>Comentarios</h3>
         {allComentarios.map ((eachComentario)=>{
             return(
-                <div key={eachComentario._id}>
+                <div>
+                <p>Escrito por:  {eachComentario.user.username} </p>
+                
+                <div className="comentarios" key={eachComentario._id}>
+                   
                     {eachComentario.comentario}
                 </div>
+                 </div>
             )
 
         })}
+        </div>
     </div>
   )
 }
