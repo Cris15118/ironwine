@@ -3,7 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import ironWineImg from "../assets/ironwine.png";
-
+import { GlobalContext } from "../context/cart.context"
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -13,10 +13,12 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 function NavbarRes({ mostrarOcultarLogin }) {
   // pasamos funcion de mostrar/ocultar login
+  const {totalProductsCart} = useContext(GlobalContext)
+
   const navigate = useNavigate();
   const { isLoggedIn, authenticateUser, user } = useContext(AuthContext);
   const [linkHome, setLinkHome] = useState("/"); // depende del rol la pagina home
-
+  
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     authenticateUser();
@@ -103,6 +105,7 @@ function NavbarRes({ mostrarOcultarLogin }) {
                     {isLoggedIn && user.role === "user" && (
                       <Nav.Link as={Link} to={"/cart"} >
                        <i className="bi bi-cart4"/>  Carrito
+                       <span style={{backgroundColor:"red",color:"white"}} >{totalProductsCart}</span>
                       </Nav.Link>
                     )}
                     {/* <NavDropdown

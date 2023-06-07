@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { RingLoader } from "react-spinners";
+import { GlobalContext } from "../context/cart.context.js";
 import {
   deleteCartService,
   getCartservice,
@@ -11,44 +12,32 @@ import CartProduct from "../components/CartProduct";
 import { Button } from "react-bootstrap";
 import ModalPago from "../components/payment/ModalPago";
 function Cart() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState();
+  //cart context
+
+  const { productsCart,  emptyCart, totalProductsCart } =
+    useContext(GlobalContext);
+
+  const [isLoading, setIsLoading] = useState(false); // comienza cargado de context
   const navigate = useNavigate();
-  const [showPaymentIntent, setShowPaymentIntent] = useState(false); // para pasarela de pago
   const [total, setTotal] = useState(0);
   const [modalShow, setModalShow] = useState(false); // mostrar pasarela
   const getData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await getCartservice();
-      const responseTotal = await getTotalCartService();
-      setProducts(response.data);
-      console.log(responseTotal.data);
-      setTotal(responseTotal.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-      navigate("/error");
-    }
+  
   };
 
   const handleVaciarCarrito = async () => {
     try {
       setIsLoading(true);
-      const response = await deleteCartService(); // borrar todos los productos del carrito del usuario
-      const responseTotal = await getTotalCartService();
-      setProducts(response.data);
-      setTotal(responseTotal);
+      await emptyCart(); // borrar todos los productos del carrito del usuario
+
+      setTotal(totalProductsCart);
       setIsLoading(false);
       navigate("/");
     } catch (error) {
       navigate("/error");
     }
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  
 
   if (isLoading) {
     return (
@@ -62,7 +51,7 @@ function Cart() {
     <div>
       <h3>Carro de la compra</h3>
       <div className="grid-products">
-        {products.map((eachProduct, index) => {
+        {productsCart.map((eachProduct, index) => {
           return (
             <CartProduct
               key={index}
@@ -72,7 +61,7 @@ function Cart() {
           );
         })}
       </div>
-      {products.length > 0 && (
+      {productsCart.length > 0 && (
         <Button onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
       )}
 

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {RingLoader} from "react-spinners"
 import { updatePaymentIntentService } from "../../services/payment.services";
 import { addHistorialService } from "../../services/historial.services";
-import { deleteCartService } from "../../services/cart.services";
+import { GlobalContext } from "../../context/cart.context";
 const PaymentSuccess = () => {
-
+  const { emptyCart } =    useContext(GlobalContext);
   const navigate = useNavigate();
   const location = useLocation()
 
@@ -13,7 +13,7 @@ const PaymentSuccess = () => {
   const addHistorial = async () => {
     try {
       await addHistorialService(); // añade las compras al historial
-      await deleteCartService(); // borra el carrito del usuario
+      await emptyCart(); // borra el carrito del usuario
     } catch (error) {
       console.log(error);
       navigate("/error");

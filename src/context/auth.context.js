@@ -11,7 +11,7 @@ function AuthWrapper(props) {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false)
     const [ user, setUser ] = useState(null)
     const [ isLoading, setIsLoading ] = useState(true)
-    const navigate = useNavigate()
+    
   
     useEffect(() => {
       authenticateUser()
