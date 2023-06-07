@@ -12,16 +12,16 @@ function Comentario() {
     const [formInput, setFormInput]= useState({
         comentario: ""
     })
-    const [isLoading, setIsLoading] = useState(false);
+    const [allComentarios, setAllComentarios]= useState()
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
         getData()
     },[])
     const getData =async()=>{
         try {
             setIsLoading(true)
-             await allComentariosService(params.id)
-          
-            setFormInput(formInput)
+     const response =  await allComentariosService(params.id, formInput)
+            setAllComentarios(response.data)
             setIsLoading(false)
             
         } catch (error) {
@@ -34,9 +34,10 @@ const handleInputChange = (e)=>{
 const handleSubmit = async (e)=>{
     e.preventDefault()
     try {
-        console.log(formInput)
-   const response =  await addComentarioService(params.id, formInput)
-   console.log(response, "comentario")
+       console.log(formInput)
+    await addComentarioService(params.id, formInput)
+        getData()
+  
    setIsLoading(false)
         
 
@@ -75,6 +76,14 @@ if (isLoading) {
             </Button>
 
         </Form>
+        {allComentarios.map ((eachComentario)=>{
+            return(
+                <div key={eachComentario._id}>
+                    {eachComentario.comentario}
+                </div>
+            )
+
+        })}
     </div>
   )
 }
