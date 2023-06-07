@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext,  useEffect, useState } from "react";
 import {
   addCartService,
   getCartservice,
@@ -11,7 +11,7 @@ const GlobalContext = createContext();
 function GlobalWrapper(props) {
   const [productsCart, setProductsCart] = useState();
   const [totalProductsCart,setTotalProductsCart]=useState(0)
-
+ 
   const getCartProducts = async () => {
     try {
         const response =await getCartservice()
@@ -51,7 +51,7 @@ function GlobalWrapper(props) {
    
   }
   useEffect(() => {
-    getCartProducts() //inicializa los productos del carrito del usuario
+  //  getCartProducts() //inicializa los productos del carrito del usuario
   }, [])
   return (
     <GlobalContext.Provider
