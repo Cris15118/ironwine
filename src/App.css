@@ -2,7 +2,9 @@
 /*color marron dorado light #b7aa8d*/
 /* color footer #857550 */
 
-
+html, body {
+  height: 100%;
+}
 .App {
   text-align: center;
   height: 100%;
