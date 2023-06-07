@@ -28,11 +28,11 @@ function Cart() {
       navigate("/error");
     }
   };
-  // useEffect(()=>{ // descomentar si da errores del map
-  //   setIsLoading(true);
-  //   getCartProducts()
-  //   setIsLoading(false);
-  // },[])
+   useEffect(()=>{ // descomentar si da errores del map
+     setIsLoading(true);
+     getCartProducts()
+     setIsLoading(false);
+   },[])
 
   if (isLoading) {
     return (
