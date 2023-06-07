@@ -16,11 +16,14 @@ const pullCartService = (productId)=>{
 const deleteCartService= () =>{
     return service.put("/cart/deleteall")
 }
+const getTotalCartService= () =>{
+    return service.get("/cart/total")
+}
 
 export{
     getCartservice,
     addCartService,
     pullCartService,
-    deleteCartService
-    
+    deleteCartService,
+    getTotalCartService
 }

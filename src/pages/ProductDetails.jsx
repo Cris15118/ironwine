@@ -95,7 +95,7 @@ function ProductDetails() {
       )}
 
       <Button onClick={handleAddCart}>Añadir a Carrito</Button>
-      <Comentario/>
+       <Comentario/> 
       <ToastMessage
         setShow={setShowToast}
         bgColor={"#fff08b"}
