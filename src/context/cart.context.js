@@ -51,7 +51,7 @@ function GlobalWrapper(props) {
    
   }
   useEffect(() => {
-  //  getCartProducts() //inicializa los productos del carrito del usuario
+    getCartProducts() //inicializa los productos del carrito del usuario
   }, [])
   return (
     <GlobalContext.Provider
