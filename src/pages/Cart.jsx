@@ -8,10 +8,10 @@ import ModalPago from "../components/payment/ModalPago";
 function Cart() {
   //cart context
 
-  const { productsCart, emptyCart, totalProductsCart } =
+  const { productsCart, emptyCart, getCartProducts } =
     useContext(GlobalContext);
 
-  const [isLoading, setIsLoading] = useState(false); // comienza cargado de context
+  const [isLoading, setIsLoading] = useState(true); // comienza cargado de context
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [modalShow, setModalShow] = useState(false); // mostrar pasarela
@@ -28,6 +28,11 @@ function Cart() {
       navigate("/error");
     }
   };
+  // useEffect(()=>{ // descomentar si da errores del map
+  //   setIsLoading(true);
+  //   getCartProducts()
+  //   setIsLoading(false);
+  // },[])
 
   if (isLoading) {
     return (
@@ -45,31 +50,31 @@ function Cart() {
           return <CartProduct key={index} cardProduct={eachProduct} />;
         })}
       </div>
-      <div className="btn-pagar">
-        {productsCart.length > 0 && (
+
+      {/* solo se muestran si existen productos en el carrito */}
+      {productsCart.length > 0 ? (
+        <div className="btn-pagar">
           <Button onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
-        )}
+          <Button variant="primary" onClick={() => setModalShow(true)}>
+            Pagar ahora
+          </Button>
+          <ModalPago
+            price={total}
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />
+           <input
+        style={{ textAlign: "center", width: "100px" }}
+        name="total"
+        value={total}
+        disabled
+      />
+        </div>
+      ) : (
+        <h4>El carrito está vacío</h4>
+      )}
 
-        {productsCart.length > 0 ? (
-          <>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
-              Pagar ahora
-            </Button>
-            <ModalPago
-              price={total}
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
-          </>
-        ):<h4>El carrito está vacío</h4>}
-
-        <input
-          style={{ textAlign: "center", width: "100px" }}
-          name="total"
-          value={total}
-          disabled
-        />
-      </div>
+     
     </div>
   );
 }
