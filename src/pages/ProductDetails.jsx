@@ -10,6 +10,7 @@ import {
 import { addCartService } from "../services/cart.services";
 import { Button } from "react-bootstrap";
 import ToastMessage from "../components/ToastMessage";
+import Comentario from "../components/Comentario";
 
 function ProductDetails() {
   const params = useParams();
@@ -75,6 +76,7 @@ function ProductDetails() {
   const { name, image, price, tipo, bodega, description } = productDetail;
   return (
     <div>
+      <Comentario/>
       <h3>{name}</h3>
       <img src={image} alt="vino" width={300} />
       <p>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
-function CartProducts(props) {
+function CardProducts(props) {
   const { name, image, price, _id } = props.cardProduct;
   return (
     <div>
@@ -17,4 +17,4 @@ function CartProducts(props) {
     </div>
   );
 }
-export default CartProducts;
+export default CardProducts;
