@@ -37,21 +37,24 @@ function AdminCreate() {
       setFormInputs({ ...formInputs, image: response.data.image });
       setIsUploading(false);
     } catch (error) {
+      setIsLoading(false);
       navigate("/error");
     }
   };
 
   const handleInputsChange = (e) =>
     setFormInputs({ ...formInputs, [e.target.name]: e.target.value }); // actualiza el estado de la propiedad que cambie en ese momento
-  
+
+  const mostrar = () => {
+    console.log(!formInputs.name);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsLoading(true);     
-       await createAdminService(formInputs);
-      setIsLoading(false);
+      setIsLoading(true);
+      await createAdminService(formInputs);
     } catch (error) {
-     
+      setIsLoading(false);
       if (error.response.status === 400) {
         setErrorMessage(error.response.data.errorMessage);
       } else {
@@ -76,7 +79,7 @@ function AdminCreate() {
         </div>
       ) : null}
       <p>{formInputs.tipo}</p>
-
+      <button onClick={mostrar}>mostrar forminputs</button>
       <Card className="admin-create-form">
         <h3>Crear Producto</h3>
         <Card.Body>
@@ -86,7 +89,8 @@ function AdminCreate() {
               <Form.Control
                 type="file"
                 onChange={handleFileUpload}
-                disabled={isUploading} required
+                disabled={isUploading}
+                required
               />
               {isUploading ? (
                 <div className="spinner">
@@ -102,7 +106,8 @@ function AdminCreate() {
                 type="text"
                 name="name"
                 value={formInputs.name}
-                onChange={handleInputsChange} required
+                onChange={handleInputsChange}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -113,7 +118,8 @@ function AdminCreate() {
                 value={formInputs.description}
                 onChange={handleInputsChange}
                 rows={4}
-                style={{ resize: "none" }} required
+                style={{ resize: "none" }}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -122,7 +128,8 @@ function AdminCreate() {
                 type="text"
                 name="bodega"
                 value={formInputs.bodega}
-                onChange={handleInputsChange} required
+                onChange={handleInputsChange}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -131,7 +138,8 @@ function AdminCreate() {
                 type="number"
                 name="price"
                 value={formInputs.price}
-                onChange={handleInputsChange} required
+                onChange={handleInputsChange}
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -139,9 +147,10 @@ function AdminCreate() {
                 name="tipo"
                 aria-label="Default select example"
                 value={formInputs.tipo}
-                onChange={handleInputsChange} required
+                onChange={handleInputsChange}
+                required
               >
-                <option value ="">Seleccione un tipo de vino:</option>
+                <option value="">Seleccione un tipo de vino:</option>
                 <option value="Tinto">Tinto</option>
                 <option value="Blanco">Blanco</option>
                 <option value="Rosado">Rosado</option>
@@ -155,7 +164,8 @@ function AdminCreate() {
                 type="number"
                 name="stock"
                 value={formInputs.stock}
-                onChange={handleInputsChange} required
+                onChange={handleInputsChange}
+                required
               />
             </Form.Group>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
