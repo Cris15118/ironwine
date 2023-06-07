@@ -1,10 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { addCartService, pullCartService } from "../services/cart.services";
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import { useNavigate } from "react-router";
-
+import { GlobalContext } from "../context/cart.context";
 function CartProducts(props) {
+  const { removeProductCart,  addProductCart } =    useContext(GlobalContext);
+
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   
@@ -19,7 +21,7 @@ function CartProducts(props) {
   const handleRestarProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await pullCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
+      const response = await removeProductCart(props.cardProduct.productId._id); //! devuelve los datos en un array
 
       if (response.data) { // si no ha sido borrado
         setProductDetail({
@@ -33,7 +35,6 @@ function CartProducts(props) {
       else{
         setProductDetail(null)
       }
-      props.getData() // vuelve a actualizar todos los datos del carrito para poder tenerlos actualizados para calcular el total del pago
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -44,7 +45,7 @@ function CartProducts(props) {
   const handleSumarProducts = async () => {
     try {
     
-      const response = await addCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
+      const response = await addProductCart(props.cardProduct.productId._id); //! devuelve los datos en un array
 
       setProductDetail({
         _id: response.data.productId._id,
@@ -53,7 +54,6 @@ function CartProducts(props) {
         price: response.data.productId.price,
         quantity: response.data.quantity,
       });
-      props.getData() // vuelve a actualizar todos los datos del carrito para poder tenerlos actualizados para calcular el total del pago
     } catch (error) {
       console.log(error);
       navigate("/error");

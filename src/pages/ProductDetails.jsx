@@ -12,7 +12,10 @@ import { Button } from "react-bootstrap";
 import ToastMessage from "../components/ToastMessage";
 import Comentario from "../components/Comentario";
 import { AuthContext } from "../context/auth.context";
+import { GlobalContext } from "../context/cart.context";
 function ProductDetails() {
+  const {  addProductCart } =    useContext(GlobalContext);
+
   const params = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
@@ -33,7 +36,7 @@ function ProductDetails() {
   };
   const handleAddCart = async () => {
     try {
-      await addCartService(params.id);
+      await addProductCart(params.id);
       setShowToastCart(true);
     } catch (error) {
       navigate("/error");

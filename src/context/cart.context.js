@@ -16,25 +16,27 @@ function GlobalWrapper(props) {
     try {
         const response =await getCartservice()
         setProductsCart( response.data) // actualiza los productos
+        console.log("setTotalProductsCart",response.data.length)
         setTotalProductsCart(response.data.length)
         return response.data
     } catch (error) {
       console.log(error);
-    }
-    
+    }    
   };
   const addProductCart = async (productId) => {
     try {
-      await addCartService(productId);
+      const response=await addCartService(productId);
       await getCartProducts() // vuelve a cargar los productos
+      return response
     } catch (error) {
       console.log(error);
     }
   };
   const removeProductCart = async (productId) => {
     try {
-      await pullCartService(productId);
+      const response=await pullCartService(productId);
       await getCartProducts()
+      return response
     } catch (error) {
       console.log(error);
     }
