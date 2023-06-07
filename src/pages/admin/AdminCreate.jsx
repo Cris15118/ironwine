@@ -89,7 +89,7 @@ function AdminCreate() {
               <Form.Control
                 type="file"
                 onChange={handleFileUpload}
-                disabled={isUploading}
+                disabled={isUploading} required
               />
               {isUploading ? (
                 <div className="spinner">
@@ -105,7 +105,7 @@ function AdminCreate() {
                 type="text"
                 name="name"
                 value={formInputs.name}
-                onChange={handleInputsChange}
+                onChange={handleInputsChange} required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -116,7 +116,7 @@ function AdminCreate() {
                 value={formInputs.description}
                 onChange={handleInputsChange}
                 rows={4}
-                style={{ resize: "none" }}
+                style={{ resize: "none" }} required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -125,7 +125,7 @@ function AdminCreate() {
                 type="text"
                 name="bodega"
                 value={formInputs.bodega}
-                onChange={handleInputsChange}
+                onChange={handleInputsChange} required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -134,7 +134,7 @@ function AdminCreate() {
                 type="number"
                 name="price"
                 value={formInputs.price}
-                onChange={handleInputsChange}
+                onChange={handleInputsChange} required
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -142,9 +142,9 @@ function AdminCreate() {
                 name="tipo"
                 aria-label="Default select example"
                 value={formInputs.tipo}
-                onChange={handleInputsChange}
+                onChange={handleInputsChange} required
               >
-                <option>Seleccione un tipo de vino:</option>
+                <option value ="">Seleccione un tipo de vino:</option>
                 <option value="Tinto">Tinto</option>
                 <option value="Blanco">Blanco</option>
                 <option value="Rosado">Rosado</option>
@@ -158,7 +158,7 @@ function AdminCreate() {
                 type="number"
                 name="stock"
                 value={formInputs.stock}
-                onChange={handleInputsChange}
+                onChange={handleInputsChange} required
               />
             </Form.Group>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
