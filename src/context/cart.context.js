@@ -53,6 +53,7 @@ function GlobalWrapper(props) {
   useEffect(() => {
     getCartProducts() //inicializa los productos del carrito del usuario
   }, [])
+  
   return (
     <GlobalContext.Provider
       value={{ productsCart, addProductCart, removeProductCart, getCartProducts ,emptyCart,totalProductsCart}}
