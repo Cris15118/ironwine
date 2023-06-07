@@ -60,12 +60,13 @@ function Cart() {
             />
           );
         })}
-      </div>
+      </div >
+      <div className="btn-pagar">
       {productsCart.length > 0 && (
-        <Button onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
+        <Button  onClick={handleVaciarCarrito}>Vaciar Carrito</Button>
       )}
 
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button  variant="primary" onClick={() => setModalShow(true)}>
         Pagar ahora
       </Button>
 
@@ -74,8 +75,9 @@ function Cart() {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-
-      <input name="total" value={total} disabled />
+     
+      <input style={{textAlign: "center", width: "100px"}} name="total" value={total} disabled />
+    </div>
     </div>
   );
 }

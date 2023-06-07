@@ -70,10 +70,10 @@ function CartProducts(props) {
           <Card.Title>{productsDetails.name} </Card.Title>
           <Card.Text>Precio : {productsDetails.price} €</Card.Text>
           <Card.Text>Cantidad :{productsDetails.quantity} </Card.Text>
-          <Button onClick={handleRestarProducts} disabled={isLoading}>
+          <Button className="btn-cart" onClick={handleRestarProducts} disabled={isLoading}>
             -
           </Button>
-          <Button onClick={handleSumarProducts} disabled={isLoading}>
+          <Button className="btn-cart" onClick={handleSumarProducts} disabled={isLoading}>
             +
           </Button>
        
