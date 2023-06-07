@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 function Footer() {
   return (
     <div>
-      <footer className="text-white py-1 bg-dark fixed-bottom">
+      <footer className="text-white py-1  fixed-bottom">
         <div className="container">
           <nav className="row">
 
