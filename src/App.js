@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Error from "./pages/error/Error";
 import NotFound from "./pages/error/NotFound";
-import NavBar from "./components/Navbar";
+import NavbarRes from "./components/NavbarRes";
 import IsPrivate from "./components/auth/IsPrivate";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar mostrarOcultarLogin={mostrarOcultarLogin} />
+      <NavbarRes mostrarOcultarLogin={mostrarOcultarLogin} />
     
       <Routes>       
         <Route

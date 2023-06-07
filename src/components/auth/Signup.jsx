@@ -4,8 +4,9 @@ import { signupService } from "../../services/auth.services";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-function Signup({setKey,setShow}) { // seleccionar login al haberte logueado
-  
+function Signup({ setKey, setShow }) {
+  // seleccionar login al haberte logueado
+
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -28,11 +29,11 @@ function Signup({setKey,setShow}) { // seleccionar login al haberte logueado
       const user = { username, email, password };
       await signupService(user);
       resetInputs(); // limpia todos los campos
-      setKey("login")
-      setShow(true)
+      setKey("login");
+      setShow(true);
       navigate("/");
     } catch (err) {
-      console.log(err)
+      console.log(err);
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);
       } else {

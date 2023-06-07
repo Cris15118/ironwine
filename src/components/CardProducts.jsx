@@ -4,15 +4,16 @@ function CartProducts(props) {
   const { name, image, price, _id } = props.cardProduct;
   return (
     <div>
+      <Card style={{ width: "12rem" }}>
       <Link to={`/products/${_id}/details`}>
-      <Card style={{ width: "10rem" }}>
-        <Card.Img variant="top" src={image} width={40}/>
-        <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>{price}</Card.Text>
-        </Card.Body>
+        <Card.Img variant="top" src={image} width={40} />
+        
+          <Card.Body>
+            <Card.Title>{name}</Card.Title>
+            <Card.Text>{price}</Card.Text>
+          </Card.Body>
+        </Link>
       </Card>
-      </Link>
     </div>
   );
 }
