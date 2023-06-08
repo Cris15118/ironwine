@@ -75,12 +75,24 @@ h3 {
   height: 120px;
   width: auto !important;
 }
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:50px;
+}
+.card-container .card:hover{
+  -webkit-box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
+}
 .card {
+
   border: none;
   margin-top: 30px;
   display: flex;
   justify-content: center;
- 
+
 }
 .card a {
   text-decoration: none;
@@ -239,8 +251,11 @@ footer {
   border: rgb(165, 142, 42);
 }
 
+.container-details img{
+  height: 350px;
+}
 .container-details {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .cart-carrito {
@@ -265,8 +280,8 @@ footer {
 }
 h1,
 h3 {
-  margin-top: 50px;
-  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 .card-random {
   display: flex;

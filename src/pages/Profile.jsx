@@ -47,24 +47,24 @@ function Profile() {
       
       <h3>Historial de compras</h3>
       {historial.length===0&&<h2>No has realizado ninguna compra.</h2>}
-      <CardGroup>
+      <div className="card-container">
       {historial.length>0&&historial.map((eachCompra) => {
-        return (<div key={eachCompra._id}>
-        <CardProducts cardProduct={{name:eachCompra.productId.name,price:eachCompra.productId.price,image:eachCompra.productId.image,_id:eachCompra.productId._id}}/>
-        </div>)
+        return (
+        <CardProducts key={eachCompra._id} cardProduct={{name:eachCompra.productId.name,price:eachCompra.productId.price,image:eachCompra.productId.image,_id:eachCompra.productId._id}}/>
+       )
       })}
       
-      </CardGroup>
+      </div>
       <hr />
       <h3>Lista de deseos</h3>
       {wishlist.length===0&&<h2>Agregue productos a su lista de deseos</h2>}
-      <CardGroup>
+      <div className="card-container">
       {wishlist.map((eachCompra) => {
         return <div key={eachCompra._id}>
         <CardProducts cardProduct={{name:eachCompra.name,price:eachCompra.price,image:eachCompra.image,_id:eachCompra._id}}/>
         </div>;
       })}
-      </CardGroup> 
+      </div> 
     </div>
     
   );

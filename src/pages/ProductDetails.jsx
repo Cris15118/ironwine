@@ -108,7 +108,7 @@ function ProductDetails() {
   return (
     <div className="container-details">
       <h3>{name}</h3>
-      <img src={image} alt="vino" width={300} />
+      <img src={image} alt="vino"  />
       <p>
         {price} <span>€</span>{" "}
       </p>
