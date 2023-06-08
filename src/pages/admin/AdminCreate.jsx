@@ -53,7 +53,7 @@ function AdminCreate() {
     try {
       setIsLoading(true);
       await createAdminService(formInputs);
-      setIsLoading(false)
+      setIsLoading(false);
       navigate("/admin");
     } catch (error) {
       setIsLoading(false);
@@ -81,7 +81,7 @@ function AdminCreate() {
         </div>
       ) : null}
       <p>{formInputs.tipo}</p>
-      
+
       <Card className="admin-create-form">
         <h3>Crear Producto</h3>
         <Card.Body>
@@ -171,14 +171,15 @@ function AdminCreate() {
               />
             </Form.Group>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-
-            <Button
-              variant="outline-success"
-              type="submit"
-              disabled={isLoading}
-            >
-              Crear Producto
-            </Button>
+            <div className="btn-forms">
+              <Button
+                variant="outline-success"
+                type="submit"
+                disabled={isLoading}
+              >
+                Crear Producto
+              </Button>
+            </div>
           </Form>
         </Card.Body>
       </Card>

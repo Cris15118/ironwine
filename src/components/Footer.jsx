@@ -10,9 +10,9 @@ function Footer() {
           <nav className="row">
 
          
-          <Link to="/" className= "col-12 col-md-3 d-flex aling-items-center justyfy-content-center" >
+          <div  className= "col-12 col-md-3 d-flex aling-items-center justyfy-content-center" >
             <img src={ironWineImg} alt="logo" className="mx-2" height={90} />
-          </Link>
+          </div>
           <ul className="col-12 col-md-3 list-unstyled">
             <li className="font-weight-bold mb-2">IRONWINE</li>
             <li className="text-center">Tu tienda de vinos online</li>

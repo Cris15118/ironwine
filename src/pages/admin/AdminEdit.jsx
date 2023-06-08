@@ -192,7 +192,7 @@ function AdminEdit() {
               />
             </Form.Group>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-
+<div className="btn-forms">
             <Button
               variant="outline-success"
               type="submit"
@@ -202,12 +202,13 @@ function AdminEdit() {
             </Button>
 
             <Button
-              variant="outline-success"
+              variant="outline-danger"
               onClick={handleDelete}
               disabled={isLoading}
             >
               Borrar Producto
             </Button>
+            </div>
           </Form>
         </Card.Body>
       </Card>

@@ -240,6 +240,12 @@ footer {
   gap:20px;
   margin-top: 50px;
 }
+.btn-forms{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap:50px;
+}
 .btn-añadir Button {
   background-color: #857550;
   border-color: cornsilk;
@@ -252,7 +258,12 @@ footer {
   background-color: rgb(165, 142, 42);
   border: rgb(165, 142, 42);
 }
+.card-random .card:hover
+{
+  -webkit-box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
 
+}
 .container-details img{
   height: 350px;
 }
@@ -295,12 +306,15 @@ h1{
   background-color: #e4d7b9;
   color:#8b6c27;
 }
+.container-random{
+  margin-top: 15px;
+}
 .card-random {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   gap: 60px;
-  margin: 100px 100px;
+  margin-top:10px;
 }
 .input-price {
   display: flex;
