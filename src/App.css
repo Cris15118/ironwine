@@ -100,7 +100,7 @@ background-color: #857550;
 .bi-search{
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  margin-left: 10px !important;
   color:gray;
 
 }
@@ -110,6 +110,7 @@ background-color: #857550;
   display: flex;
   align-items: center;
   padding: 10px 10px 0 10px;  
+ 
  
 }
 /*FOOTER*/
@@ -278,8 +279,13 @@ h1, h3{
 .dropdown-toggle {
   background-color: #857550 !important;
  border:cornsilk ;
+
 }
 .navbar-toggler {
  border: 2px solid white ;
 }
 
+.btn.disabled,.btn:disabled{
+  background-color: #857550 !important;
+  border:none;
+}

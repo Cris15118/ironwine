@@ -23,21 +23,13 @@ const handleSearchChange = async (searchDrop)=>{
   return (
     <div className="search-bar">
       <InputGroup className="mb-3">
-        <i className="bi bi-search"></i>
-        <Form.Control
-          value={searchInput}
-          type="text"
-          onChange={handleSearch}
-          placeholder="Busque el producto que desee"
-          
-        />
-          <DropdownButton
+      <DropdownButton
           align="end"
           title="Categorías"
           id="dropdown-menu-align-end"
           className="btn-categoria"
         >
-          <Dropdown.Item value={"Tinto"} onClick={()=>{handleSearchChange("Tinto")}}>Tinto</Dropdown.Item>
+         <Dropdown.Item value={"Tinto"} onClick={()=>{handleSearchChange("Tinto")}}>Tinto</Dropdown.Item>
           <Dropdown.Item value={"Blanco"} onClick={()=>{handleSearchChange("Blanco")}}>Blanco</Dropdown.Item>
           <Dropdown.Item value={"Rosado"} onClick={()=>{handleSearchChange("Rosado")}}>Rosado</Dropdown.Item>
           <Dropdown.Item value={"Espumoso"} onClick={()=>{handleSearchChange("Espumoso")}}>Espumoso</Dropdown.Item>
@@ -47,6 +39,15 @@ const handleSearchChange = async (searchDrop)=>{
             Todos
           </Dropdown.Item>
         </DropdownButton>
+        <Form.Control
+          value={searchInput}
+          type="text"
+          onChange={handleSearch}
+          placeholder="Busque el producto que desee"
+          
+        />
+         <i className="bi bi-search"></i>
+         
       </InputGroup>
    
     </div>

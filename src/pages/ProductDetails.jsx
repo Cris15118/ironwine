@@ -33,6 +33,7 @@ function ProductDetails() {
   const handleRemoveWish = async () => {
     try {
       await pullWishListService(params.id);
+      setMsgToast("Producto eliminado de su lista de deseos")
       setShowToast(true);
       getIsInWishList();
     } catch (error) {
@@ -42,6 +43,7 @@ function ProductDetails() {
   const handleAddWish = async () => {
     try {
       await addWishListService(params.id);
+      setMsgToast("Producto añadido a su lista de deseos")
       setShowToast(true);
       getIsInWishList();
     } catch (error) {
@@ -51,6 +53,7 @@ function ProductDetails() {
   const handleAddCart = async () => {
     try {
       await addProductCart(params.id);
+      setMsgToast("Producto añadido a su carrito")
       setShowToastCart(true);
     } catch (error) {
       navigate("/error");
@@ -132,16 +135,16 @@ function ProductDetails() {
         bgColor={"#fff08b"}
         textColor={"black"}
         show={showToast}
-        messageTitle={"Deseo añadido."}
-        message={"Este producto se ha añadido a su Lista de Deseos"}
+        messageTitle={"Lista de deseo"}
+        message={msgToast}
       />
       <ToastMessage
         setShow={setShowToastCart}
         bgColor={"blue"}
         textColor={"white"}
         show={showToastCart}
-        messageTitle={"Añadido a Carrito."}
-        message={"Este producto se ha añadido a su carrito"}
+        messageTitle={"Carrito de la compra"}
+        message={msgToast}
       />
 
       <RandomCard />
