@@ -54,6 +54,7 @@ function AdminCreate() {
       setIsLoading(true);
       await createAdminService(formInputs);
       setIsLoading(false)
+      navigate("/admin");
     } catch (error) {
       setIsLoading(false);
       if (error.response.status === 400) {

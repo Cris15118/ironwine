@@ -22,7 +22,7 @@ function ProductDetails() {
   const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn,user } = useContext(AuthContext);
   const [productDetail, setProductDetail] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isWishList, setIsWishList] = useState(false);
@@ -117,11 +117,12 @@ function ProductDetails() {
       <h5>{bodega}</h5>
       <div className="btn-añadir">
         
-        {(!isWishList && isLoggedIn) && <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
+        {((!isWishList && isLoggedIn) && user.role !== "admin") && <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
         }
-        {(isWishList && isLoggedIn) && <Button onClick={handleRemoveWish}> Quitar de Lista de Deseos</Button>
+        {((isWishList && isLoggedIn) && user.role !== "admin")&& <Button onClick={handleRemoveWish}> Quitar de Lista de Deseos</Button>
         }
-        {isLoggedIn ? (
+        {isLoggedIn && user.role !== "admin"&&
+        (isLoggedIn ) ? (
           <Button onClick={handleAddCart}>Añadir a Carrito</Button>
         ) : (
           <Button onClick={handleAddCart} disabled>
