@@ -37,7 +37,7 @@ function RandomCard() {
         );
       }
   return (
-    <div>
+    <div  className="card-random">
         {allProducts.map((eachProduct,index)=>{
             return(
                 <div key={`${eachProduct._id}${index}`}>

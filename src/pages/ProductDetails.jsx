@@ -129,6 +129,7 @@ function ProductDetails() {
         messageTitle={"Añadido a Carrito."}
         message={"Este producto se ha añadido a su carrito"}
       />
+      
       <RandomCard/>
       
     </div>
