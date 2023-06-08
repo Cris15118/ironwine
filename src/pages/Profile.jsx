@@ -45,7 +45,7 @@ function Profile() {
       <h3>Historial de compras</h3>
       <CardGroup>
       {historial.length>0&&historial.map((eachCompra) => {
-        return <div key={eachCompra._id}>{eachCompra.productId.name}
+        return <div key={eachCompra._id}>
         <CardProducts cardProduct={{name:eachCompra.productId.name,price:eachCompra.productId.price,image:eachCompra.productId.image,_id:eachCompra.productId._id}}/>
         </div>;
       })}
@@ -53,7 +53,7 @@ function Profile() {
       <h3>Lista de deseos</h3>
       <CardGroup>
       {wishlist.map((eachCompra) => {
-        return <div key={eachCompra._id}>{eachCompra.name}
+        return <div key={eachCompra._id}>
         <CardProducts cardProduct={{name:eachCompra.name,price:eachCompra.price,image:eachCompra.image,_id:eachCompra._id}}/>
         </div>;
       })}

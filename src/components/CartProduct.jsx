@@ -65,20 +65,26 @@ function CartProducts(props) {
     <>
     {/* solo se renderizara si existe, para que cuando se borre desaparezca */}
      {productsDetails&& 
-     <Card style={{ width: "18rem", marginTop: "80px"}}>
-        <Card.Img variant="top" src={productsDetails.image} />
+     <Card className="cart-carrito" style={{ width: "20rem", marginTop: "80px"}}>
+       <div className="cart-img-carro">
+        <Card.Img  variant="top" src={productsDetails.image} width={40}/>
+       </div>
+       
         <Card.Body>
+          <div className="cart-text-carro">
           <Card.Title>{productsDetails.name} </Card.Title>
           <Card.Text>Precio : {productsDetails.price} €</Card.Text>
           <Card.Text>Cantidad :{productsDetails.quantity} </Card.Text>
+          
           <Button className="btn-cart" onClick={handleRestarProducts} disabled={isLoading}>
             -
           </Button>
           <Button className="btn-cart" onClick={handleSumarProducts} disabled={isLoading}>
             +
           </Button>
-       
+         </div>
         </Card.Body>
+   
       </Card>}
     </>
   );

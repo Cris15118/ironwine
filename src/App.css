@@ -1,14 +1,14 @@
 /* color marron-dorado #857550 */
 /*color marron dorado light #b7aa8d*/
 /* color footer #857550 */
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap');
 html, body {
   height: 100%;
 }
 .App {
   text-align: center;
   height: 100%;
-  
+  font-family:"DM Serif Display";
 }
 
 .spinner {
@@ -54,6 +54,7 @@ h3 {
 }
 .card{
   border:none;
+  margin-top: 30px;
 }
 .card a {
   text-decoration: none;
@@ -141,6 +142,12 @@ justify-content: center;
   border-color: cornsilk;
   font-weight: bolder;
 }
+.btn-cart:hover {
+  -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);  
+  box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15); 
+  background-color: rgb(165, 142, 42);
+  border: rgb(165, 142, 42) ;
+}
 
 .btn-vaciar{
  display: flex;
@@ -158,10 +165,20 @@ justify-content: center;
   font-weight: bolder;
   border: #7f1734;
 }
+.color-vaciar:hover{
+ background-color: #d46282 ;
+ -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);  
+  box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15); 
+}
 .color-pagar{
   background-color:#00703c ;
   font-weight: bolder;
   border: #00703c;
+}
+.color-pagar:hover{
+  background-color: #5cbe90;
+  -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);  
+  box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15); 
 }
 .btn-añadir{
   display: flex;
@@ -178,8 +195,32 @@ justify-content: center;
    -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);  
   box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15); 
   background-color: rgb(165, 142, 42);
+  border: rgb(165, 142, 42)
 } 
 
 .container-details{
   margin-top: 50px;
+}
+
+
+.cart-carrito{
+  margin: 40px;
+  
+}
+
+.cart-img-carro{
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 75px;
+}
+
+.cart-text-carro{
+  text-align: center;
+  line-height: 15px;
+  margin-top: 20px;
+}
+h1, h3{
+  margin-top: 50px;
+  margin-bottom: 30px;
+  
 }
