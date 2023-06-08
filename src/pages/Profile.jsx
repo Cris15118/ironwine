@@ -1,16 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getHistorialService } from "../services/historial.services";
 import { useNavigate } from "react-router-dom";
 import { RingLoader } from "react-spinners";
 import CardProducts from "../components/CardProducts"
 import { CardGroup } from "react-bootstrap";
 import { allwishListService } from "../services/wishlist.services";
+import { AuthContext } from "../context/auth.context";
 function Profile() {
   const [historial, setHistorial] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [wishlist,setWishlist]=useState([])
   const navigate = useNavigate();
 
+  const {user} = useContext(AuthContext)
   const getData = async () => {
     try {
       setIsLoading(true);
@@ -41,7 +43,7 @@ function Profile() {
   }
   return (
     <div>
-      <h1>Perfil de</h1>
+      <h1>Perfil de {user.user}</h1>
       <h3>Historial de compras</h3>
       <CardGroup>
       {historial.length>0&&historial.map((eachCompra) => {

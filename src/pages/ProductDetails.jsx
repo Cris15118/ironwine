@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams,useLocation } from "react-router-dom";
 import { detailProductService } from "../services/products.services";
 import { RingLoader } from "react-spinners";
 import {
@@ -13,10 +13,11 @@ import ToastMessage from "../components/ToastMessage";
 import Comentario from "../components/Comentario";
 import { AuthContext } from "../context/auth.context";
 import { GlobalContext } from "../context/cart.context";
+import RandomCard from "../components/RandomCard";
 
 function ProductDetails() {
   const {  addProductCart } =    useContext(GlobalContext);
-
+  const location = useLocation()
   const params = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
@@ -63,8 +64,15 @@ function ProductDetails() {
       getIsInWishList();
     }
   }, []);
+  useEffect(()=>{
+    setIsLoading(false)
+    getData()
+    setIsLoading(true)
+    
+},[location])
 
   const getData = async () => {
+    
     try {
       const response = await detailProductService(params.id);
       setProductDetail(response.data);
@@ -121,6 +129,8 @@ function ProductDetails() {
         messageTitle={"Añadido a Carrito."}
         message={"Este producto se ha añadido a su carrito"}
       />
+      <RandomCard/>
+      
     </div>
   );
 }
