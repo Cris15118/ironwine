@@ -59,7 +59,9 @@ function Cart() {
       </div>
 
       {/* solo se muestran si existen productos en el carrito */}
+      
       {productsCart.length > 0 ? (
+        <div>
         <div className="btn-vaciar">
           <Button className="color-vaciar" onClick={handleVaciarCarrito}>
             Vaciar Carrito
@@ -76,7 +78,9 @@ function Cart() {
             show={modalShow}
             onHide={() => setModalShow(false)}
           />
+          </div>
           <div className="input-price">
+            <p>Total a pagar</p>
           <input
             style={{ textAlign: "center", width: "100px" }}
             name="total"
@@ -85,8 +89,8 @@ function Cart() {
           /><p>€</p>
           
           </div>
-        </div>
         
+        </div>
      ) : (
         <h4>El carrito está vacío</h4>
       )}

@@ -50,7 +50,7 @@ function NavbarRes({ mostrarOcultarLogin }) {
  
       <>
       
-          <Navbar key={"md"} expand={"md"} >
+          <Navbar  key={"md"} expand={"md"} >
             <Container fluid>
            
                 
@@ -65,7 +65,7 @@ function NavbarRes({ mostrarOcultarLogin }) {
                
           
               <Navbar.Brand href={linkHome}>IRONWINE</Navbar.Brand>
-              <Navbar.Toggle
+              <Navbar.Toggle 
                 aria-controls={`offcanvasNavbar-expand-${"md"}`}
               />
               <Navbar.Offcanvas

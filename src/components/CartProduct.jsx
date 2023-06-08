@@ -65,8 +65,8 @@ function CartProducts(props) {
     <>
     {/* solo se renderizara si existe, para que cuando se borre desaparezca */}
      {productsDetails&& 
-     <Card className="cart-carrito" style={{ width: "20rem", marginTop: "80px"}}>
-       <div className="cart-img-carro">
+     <Card className="cart-carrito" style={{  marginTop: "80px"}}>
+       <div >
         <Card.Img  variant="top" src={productsDetails.image} width={40}/>
        </div>
        

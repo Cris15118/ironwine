@@ -55,6 +55,9 @@ h3 {
 .card{
   border:none;
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 20rem;
 }
 .card a {
   text-decoration: none;
@@ -152,7 +155,9 @@ justify-content: center;
 
 .btn-vaciar{
  display: flex;
- justify-content: space-evenly;
+ justify-content: center;
+ flex-wrap: wrap;
+ gap: 80px;
  margin-top: 50px;
 }
 
@@ -206,13 +211,20 @@ justify-content: center;
 
 .cart-carrito{
   margin: 40px;
-  
+  display: flex;
+  justify-content: center;
 }
 
 .cart-img-carro{
   width: 100px;
   margin-top: 20px;
-  margin-left: 75px;
+  
+}
+.cart-img-carro img{
+  
+  display: flex;
+  justify-content: center;
+  
 }
 
 .cart-text-carro{
@@ -235,11 +247,14 @@ h1, h3{
 }
 .input-price{
   display: flex;
-  justify-content: space-between;
-  margin: 10px;
+  justify-content: center;
+  
+  margin-top: 50px;
 }
 .input-price p{
- margin-left: 20px;
+ margin: 0 20px 0 20px;
+ display: flex;
+ align-items: center;
 }
 .btn-añadir-home{
   background-color:  #857550 ;
@@ -252,6 +267,13 @@ h1, h3{
   background-color: rgb(165, 142, 42);
   border: rgb(165, 142, 42)
 }
-.btn-categoria button{
+.dropdown-toggle {
   background-color: #857550 !important;
+ border:cornsilk ;
+}
+.navbar-toggler {
+ border: 2px solid white ;
+}
+navbar-toggler-icon{
+  color: white !important;
 }
