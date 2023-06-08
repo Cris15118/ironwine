@@ -30,6 +30,10 @@ h3 {
   margin: auto;
   width: 75%;
 }
+.admin-card{
+  display: flex;
+  justify-content: center;
+}
 /* USER HOME */
 .carousel .carousel-item {
   height: 300px;
@@ -275,3 +279,4 @@ h1, h3{
 .navbar-toggler {
  border: 2px solid white ;
 }
+

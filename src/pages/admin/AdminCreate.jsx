@@ -53,6 +53,7 @@ function AdminCreate() {
     try {
       setIsLoading(true);
       await createAdminService(formInputs);
+      setIsLoading(false)
     } catch (error) {
       setIsLoading(false);
       if (error.response.status === 400) {
