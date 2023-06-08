@@ -31,6 +31,7 @@ function ProductDetails() {
     try {
       await addWishListService(params.id);
       setShowToast(true);
+      getIsInWishList()
     } catch (error) {
       navigate("/error");
     }
