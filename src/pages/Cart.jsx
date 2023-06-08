@@ -76,14 +76,18 @@ function Cart() {
             show={modalShow}
             onHide={() => setModalShow(false)}
           />
+          <div className="input-price">
           <input
             style={{ textAlign: "center", width: "100px" }}
             name="total"
             value={totalPrice}
             disabled
-          />
+          /><p>€</p>
+          
+          </div>
         </div>
-      ) : (
+        
+     ) : (
         <h4>El carrito está vacío</h4>
       )}
     </div>

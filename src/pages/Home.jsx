@@ -88,7 +88,7 @@ function Home() {
               <div key={eachProduct._id}>
                 <CardProducts cardProduct={eachProduct} />
                 <div>
-                  <Button
+                  <Button className="btn-añadir-home"
                     id={eachProduct._id}
                     onClick={handleAddCart}
                     disabled={isAdding || !isLoggedIn ? true : false}

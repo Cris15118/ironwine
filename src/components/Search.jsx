@@ -29,12 +29,13 @@ const handleSearchChange = async (searchDrop)=>{
           type="text"
           onChange={handleSearch}
           placeholder="Busque el producto que desee"
+          
         />
           <DropdownButton
           align="end"
           title="Categorías"
           id="dropdown-menu-align-end"
-         
+          className="btn-categoria"
         >
           <Dropdown.Item value={"Tinto"} onClick={()=>{handleSearchChange("Tinto")}}>Tinto</Dropdown.Item>
           <Dropdown.Item value={"Blanco"} onClick={()=>{handleSearchChange("Blanco")}}>Blanco</Dropdown.Item>

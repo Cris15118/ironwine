@@ -67,6 +67,7 @@ h3 {
 .grid-products {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin-top: 15px;
 }
@@ -230,7 +231,27 @@ h1, h3{
   justify-content: space-around;
   gap: 60px;
   margin: 100px 100px;
- 
- 
 
+}
+.input-price{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.input-price p{
+ margin-left: 20px;
+}
+.btn-añadir-home{
+  background-color:  #857550 ;
+  border-color: cornsilk;
+  font-weight: bolder;
+}
+.btn-añadir-home:hover{
+  -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);  
+  box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15); 
+  background-color: rgb(165, 142, 42);
+  border: rgb(165, 142, 42)
+}
+.btn-categoria button{
+  background-color: #857550 !important;
 }
