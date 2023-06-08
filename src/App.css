@@ -260,6 +260,7 @@ h1, h3{
   background-color:  #857550 ;
   border-color: cornsilk;
   font-weight: bolder;
+  margin-top: 30px;
 }
 .btn-añadir-home:hover{
   -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);  
@@ -273,7 +274,4 @@ h1, h3{
 }
 .navbar-toggler {
  border: 2px solid white ;
-}
-navbar-toggler-icon{
-  color: white !important;
 }
