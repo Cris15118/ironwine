@@ -39,15 +39,20 @@ function AdminHome() {
   return (
     <div>     
       <Link to="/admin/create">Crear Productos</Link>
+      <div className="container-admin" >
       {allProducts.map ((eachProduct)=>{
         return(
           
-          <div key={eachProduct._id} className="admin-card">
+          
+            <div className="admin-card" key={eachProduct._id}>
             <CardProducts cardProduct = {eachProduct}/>
+          
             <Link to={`/admin/${eachProduct._id}/edit`} >Editar</Link>
-          </div>
+            </div>
+         
         )
       })}
+       </div>
     </div>
   )
 }

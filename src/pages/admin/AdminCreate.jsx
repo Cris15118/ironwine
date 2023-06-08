@@ -80,7 +80,7 @@ function AdminCreate() {
         </div>
       ) : null}
       <p>{formInputs.tipo}</p>
-      <button onClick={mostrar}>mostrar forminputs</button>
+      
       <Card className="admin-create-form">
         <h3>Crear Producto</h3>
         <Card.Body>

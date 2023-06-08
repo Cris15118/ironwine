@@ -30,9 +30,12 @@ h3 {
   margin: auto;
   width: 75%;
 }
-.admin-card{
+
+.container-admin{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
 /* USER HOME */
 .carousel .carousel-item {
