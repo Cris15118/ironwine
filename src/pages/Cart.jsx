@@ -5,14 +5,20 @@ import { GlobalContext } from "../context/cart.context.js";
 import CartProduct from "../components/CartProduct";
 import { Button } from "react-bootstrap";
 import ModalPago from "../components/payment/ModalPago";
-function Cart() {
-  //cart context
+import ModalMessage from "../components/modal/ModalMessage.jsx";
 
+function Cart() {
+  //mensaje emergente
+  const [modalShowMsg, setModalShowMsg] = useState(false);
+  //cart context
+  const handleClose = () => setModalShowMsg(false);
+ 
   const { productsCart, emptyCart, getCartProducts, totalPrice } =
     useContext(GlobalContext);
 
   const [isLoading, setIsLoading] = useState(true); // comienza cargado de context
   const navigate = useNavigate();
+  //pasarela
   const [modalShow, setModalShow] = useState(false); // mostrar pasarela
 
   const handleVaciarCarrito = async () => {
@@ -51,19 +57,25 @@ function Cart() {
 
   return (
     <div>
+    <ModalMessage
+        show={modalShowMsg}
+        handleClose={handleClose}
+        acceptBtn={handleVaciarCarrito}
+        modalTitle={"Vaciar Carrito"} modalBody={"¿Desea vaciar el carrito?"}
+      />
       <h3>Carro de la compra</h3>
       <div className="grid-products">
         {productsCart.map((eachProduct, index) => {
           return <CartProduct key={index} cardProduct={eachProduct} />;
         })}
       </div>
-
+      
       {/* solo se muestran si existen productos en el carrito */}
       
       {productsCart.length > 0 ? (
         <div>
         <div className="btn-vaciar">
-          <Button className="color-vaciar" onClick={handleVaciarCarrito}>
+          <Button className="color-vaciar" onClick={()=>setModalShowMsg(true)} >
             Vaciar Carrito
           </Button>
           <Button
@@ -94,7 +106,9 @@ function Cart() {
      ) : (
         <h4>El carrito está vacío</h4>
       )}
+      
     </div>
+    
   );
 }
 

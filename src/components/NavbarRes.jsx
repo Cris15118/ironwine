@@ -75,7 +75,7 @@ function NavbarRes({ mostrarOcultarLogin }) {
               >
                 <Offcanvas.Header closeButton>
                   <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${"md"}`}>
-                    Offcanvas
+                    IronWine
                   </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
