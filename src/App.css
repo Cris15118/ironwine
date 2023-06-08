@@ -133,6 +133,7 @@ justify-content: center;
 .caja-comentarios h3{
   margin: 20px;
 }
+/*BOTONES*/
 .btn-cart{
   margin: 10px;
   width: 40px;
@@ -173,6 +174,12 @@ justify-content: center;
   border-color: cornsilk;
   font-weight: bolder;
 }
+.btn-añadir button:hover{
+   -webkit-box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15);  
+  box-shadow: 5px 5px 15px 10px rgba(0,0,0,0.15); 
+  background-color: rgb(165, 142, 42);
+} 
+
 .container-details{
   margin-top: 50px;
 }
