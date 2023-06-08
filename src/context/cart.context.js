@@ -2,6 +2,7 @@ import { createContext,  useEffect, useState } from "react";
 import {
   addCartService,
   getCartservice,
+  getTotalCartService,
   pullCartService,
   deleteCartService
 } from "../services/cart.services";
@@ -11,13 +12,24 @@ const GlobalContext = createContext();
 function GlobalWrapper(props) {
   const [productsCart, setProductsCart] = useState();
   const [totalProductsCart,setTotalProductsCart]=useState(0)
+  const [totalPrice,setTotalPrice]=useState(0)
  
+  const getTotalPriceCart = async ()=>{
+    try {
+      const response =await getTotalCartService()
+      setTotalPrice( response.data) // actualiza los productos      
+    
+  } catch (error) {
+    console.log(error);
+  }  
+  }
   const getCartProducts = async () => {
     try {
         const response =await getCartservice()
-        setProductsCart( response.data) // actualiza los productos
-        console.log("setTotalProductsCart",response.data.length)
-        setTotalProductsCart(response.data.length)
+        setProductsCart( response.data) // actualiza los productos  
+        setTotalProductsCart(response.data.length)    
+        getTotalPriceCart()
+      //  getTotalCart()
         return response.data
     } catch (error) {
       console.log(error);
@@ -61,7 +73,7 @@ function GlobalWrapper(props) {
 
   return (
     <GlobalContext.Provider
-      value={{ productsCart, addProductCart, removeProductCart, getCartProducts ,emptyCart,totalProductsCart}}
+      value={{ productsCart, getTotalCartService,totalPrice,addProductCart, removeProductCart, getCartProducts ,emptyCart,totalProductsCart}}
     >
       {props.children}
     </GlobalContext.Provider>
