@@ -14,7 +14,7 @@ function ToastMessage({messageTitle,message,setShow,show,bgColor,textColor}) {
       style={{ zIndex: 1 }}
     >
       <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
-          <Toast.Header style={{backgroundColor:"#c8b589",color:textColor}}>
+      <Toast.Header style={{backgroundColor:"#c8b589",color:textColor}}>
             <img
               src="holder.js/20x20?text=%20"
               className="rounded me-2"
