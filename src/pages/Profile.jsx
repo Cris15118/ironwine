@@ -44,15 +44,20 @@ function Profile() {
   return (
     <div>
       <h1>Perfil de {user.user}</h1>
+      
       <h3>Historial de compras</h3>
+      {historial.length===0&&<h2>No has realizado ninguna compra.</h2>}
       <CardGroup>
       {historial.length>0&&historial.map((eachCompra) => {
-        return <div key={eachCompra._id}>
+        return (<div key={eachCompra._id}>
         <CardProducts cardProduct={{name:eachCompra.productId.name,price:eachCompra.productId.price,image:eachCompra.productId.image,_id:eachCompra.productId._id}}/>
-        </div>;
+        </div>)
       })}
+      
       </CardGroup>
+      <hr />
       <h3>Lista de deseos</h3>
+      {wishlist.length===0&&<h2>Agregue productos a su lista de deseos</h2>}
       <CardGroup>
       {wishlist.map((eachCompra) => {
         return <div key={eachCompra._id}>
