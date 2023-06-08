@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Carousel from 'react-bootstrap/Carousel'
-import carrusel1Img from "../assets/carrusel1.webp"
-import carrusel2Img from "../assets/carruel2.png"
+import carrusel1Img from "../assets/carrusel1.jpg"
+import carrusel2Img from "../assets/carrusel2.jpg"
 import carrusel3Img from "../assets/carrusel3.jpg"
 
 function ControlledCarousel() {
