@@ -6,7 +6,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 function Search({ searchWine }) {
   const [searchInput, setSearchInput] = useState("");
-  const [dropdownSearch, setDropDownSearch] = useState("");
+  const [dropdownSearch, setDropDownSearch] = useState("Todas");
 
   const handleSearch = (e) => {
     setSearchInput(e.target.value);
@@ -33,7 +33,7 @@ const handleSearchChange = async (searchDrop)=>{
         />
          <DropdownButton
           align="end"
-          title="Categorías"
+          title={dropdownSearch===""?"Todas":dropdownSearch}
           id="dropdown-menu-align-end"
           className="btn-categoria"
         >
@@ -44,7 +44,7 @@ const handleSearchChange = async (searchDrop)=>{
           <Dropdown.Item value={"Palo Cortado"} onClick={()=>{handleSearchChange("Palo Cortado")}}>Palo Cortado</Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item value="" eventKey="4" onClick={()=>{handleSearchChange("")}}>
-            Todos
+            Todas
           </Dropdown.Item>
         </DropdownButton>
         

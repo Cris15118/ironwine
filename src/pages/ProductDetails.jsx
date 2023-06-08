@@ -106,6 +106,7 @@ function ProductDetails() {
 
   const { name, image, price, tipo, bodega, description } = productDetail;
   return (
+    <div>
     <div className="container-details">
       <h3>{name}</h3>
       <img src={image} alt="vino"  />
@@ -115,6 +116,7 @@ function ProductDetails() {
       <p >{description}</p>
       <h6>{tipo}</h6>
       <h5>{bodega}</h5>
+    
       <div className="btn-añadir">
         
         {((!isWishList && isLoggedIn) && user.role !== "admin") && <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
@@ -130,8 +132,13 @@ function ProductDetails() {
           </Button>
         )}
       </div>
+      <hr />
       <Comentario />
-      <ToastMessage
+    <hr />
+
+      <RandomCard />
+    </div>
+    <ToastMessage
         setShow={setShowToast}
         bgColor={"#fff08b"}
         textColor={"black"}
@@ -147,9 +154,7 @@ function ProductDetails() {
         messageTitle={"Carrito de la compra"}
         message={msgToast}
       />
-
-      <RandomCard />
-    </div>
+      </div>
   );
 }
 
