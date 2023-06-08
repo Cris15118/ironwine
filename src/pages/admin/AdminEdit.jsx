@@ -16,6 +16,7 @@ function AdminEdit() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   // const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [formInputs, setFormInputs] = useState({
@@ -54,7 +55,7 @@ function AdminEdit() {
       uploadData.append("image", e.target.files[0]); // image tiene que ser el mismo nombre q en el middleware uploader.single("image")
 
       const response = await uploadImageService(uploadData);
-       console.log(response.data.image);
+      console.log(response.data.image);
       setImageUrl(response.data.image); // manda la url de la imagen al front end, usando imageUrl
       setFormInputs({ ...formInputs, image: response.data.image });
       setIsUploading(false);
@@ -68,10 +69,19 @@ function AdminEdit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
+
       await editAdminService(params.id, formInputs);
+      setIsLoading(false);
       navigate(`/admin`);
     } catch (error) {
-      navigate("/error");
+      setIsLoading(false);
+
+      if (error.response.status === 400) {
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
+      }
     }
   };
   const handleDelete = async () => {
@@ -181,7 +191,7 @@ function AdminEdit() {
                 onChange={handleInputsChange}
               />
             </Form.Group>
-            {/* {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} */}
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
             <Button
               variant="outline-success"
