@@ -8,8 +8,7 @@ import ModalPago from "../components/payment/ModalPago";
 function Cart() {
   //cart context
 
-  const { productsCart, emptyCart, getCartProducts } =
-    useContext(GlobalContext);
+  const { productsCart, emptyCart, getCartProducts } =   useContext(GlobalContext);
 
   const [isLoading, setIsLoading] = useState(true); // comienza cargado de context
   const navigate = useNavigate();

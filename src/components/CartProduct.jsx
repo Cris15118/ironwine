@@ -1,13 +1,14 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { addCartService, pullCartService } from "../services/cart.services";
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { GlobalContext } from "../context/cart.context";
+
 
 function CartProducts(props) {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  
+  const {addProductCart,removeProductCart} = useContext(GlobalContext)
   const [productsDetails, setProductDetail] = useState({
     _id: props.cardProduct.productId._id,
     name: props.cardProduct.productId.name,
@@ -19,7 +20,7 @@ function CartProducts(props) {
   const handleRestarProducts = async () => {
     try {
       setIsLoading(true);
-      const response = await pullCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
+      const response = await removeProductCart(props.cardProduct.productId._id); //! devuelve los datos en un array
 
       if (response.data) { // si no ha sido borrado
         setProductDetail({
@@ -29,12 +30,12 @@ function CartProducts(props) {
           price: response.data.productId.price,
           quantity: response.data.quantity,
         });
+        setIsLoading(false);
       }
       else{
         setProductDetail(null)
       }
-      props.getData() // vuelve a actualizar todos los datos del carrito para poder tenerlos actualizados para calcular el total del pago
-      setIsLoading(false);
+  
     } catch (error) {
       console.log(error);
       navigate("/error");
@@ -43,8 +44,8 @@ function CartProducts(props) {
 
   const handleSumarProducts = async () => {
     try {
-    
-      const response = await addCartService(props.cardProduct.productId._id); //! devuelve los datos en un array
+      setIsLoading(true);
+      const response = await addProductCart(props.cardProduct.productId._id); //! devuelve los datos en un array
 
       setProductDetail({
         _id: response.data.productId._id,
@@ -53,7 +54,7 @@ function CartProducts(props) {
         price: response.data.productId.price,
         quantity: response.data.quantity,
       });
-      props.getData() // vuelve a actualizar todos los datos del carrito para poder tenerlos actualizados para calcular el total del pago
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       navigate("/error");
