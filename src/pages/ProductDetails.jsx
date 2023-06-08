@@ -112,7 +112,7 @@ function ProductDetails() {
       <p>
         {price} <span>€</span>{" "}
       </p>
-      <p>{description}</p>
+      <p >{description}</p>
       <h6>{tipo}</h6>
       <h5>{bodega}</h5>
       <div className="btn-añadir">

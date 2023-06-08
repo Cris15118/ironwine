@@ -80,6 +80,7 @@ function Comentario() {
               onChange={handleInputChange}
               rows={4}
               cols={90}
+              style={{ resize: "none" }}
             />
           </Form.Group>
       
