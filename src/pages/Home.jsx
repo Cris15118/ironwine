@@ -16,9 +16,11 @@ import Col from "react-bootstrap/Col";
 import { GlobalContext } from "../context/cart.context";
 import { Button } from "react-bootstrap";
 import { AuthContext } from "../context/auth.context";
+import ToastMessage from "../components/ToastMessage";
 
 
 function Home() {
+  const [showToastCart, setShowToastCart] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const { addProductCart } = useContext(GlobalContext);
   const { isLoggedIn } = useContext(AuthContext);
@@ -27,6 +29,7 @@ function Home() {
     try {
       setIsAdding(true);
       await addProductCart(e.target.id);
+      setShowToastCart(true)
       setIsAdding(false);
     } catch (error) {
       console.log(error);
@@ -54,6 +57,7 @@ function Home() {
       navigate("/error");
     }
   };
+
   const searchWine = (search,searchDropdown) => {
     let newSearch = allProducts.filter((eachProduct) => {
       if (eachProduct.name.toLowerCase().includes(search) && (eachProduct.tipo===searchDropdown || searchDropdown ==="")) {
@@ -101,6 +105,17 @@ function Home() {
           })}
         </div>
       </section>
+     
+      <ToastMessage
+       
+        setShow={setShowToastCart}
+        bgColor={"blue"}
+        textColor={"white"}
+        show={showToastCart}
+        messageTitle={"Carrito de la compra"}
+        message={"Producto añadido a su carrito"}
+      />
+    
     </div>
   );
 }

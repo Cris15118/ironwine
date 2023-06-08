@@ -11,7 +11,7 @@ function ToastMessage({messageTitle,message,setShow,show,bgColor,textColor}) {
     <ToastContainer
       className="p-3"
       position={position}
-      style={{ zIndex: 1 }}
+      style={{ zIndex: 99 }}
     >
       <Toast onClose={() => setShow(false)} show={show} delay={1500} autohide>
           <Toast.Header style={{backgroundColor:"#c8b589",color:textColor}}>
