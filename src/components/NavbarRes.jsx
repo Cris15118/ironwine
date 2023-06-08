@@ -80,7 +80,7 @@ function NavbarRes({ mostrarOcultarLogin }) {
                 )}
                 {!isLoggedIn && (
                   <Nav.Link as={Link}>
-                    <Button onClick={handleLogin} variant="outline-primary">
+                    <Button onClick={handleLogin} variant="outline-light">
                       Login/Signup
                     </Button>
                   </Nav.Link>

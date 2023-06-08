@@ -31,6 +31,9 @@ h3 {
   margin: auto;
   width: 75%;
 }
+.admin-create-form .card{
+  width: 70% !important;
+}
 
 .container-admin {
   display: flex;
@@ -54,7 +57,7 @@ h3 {
 .carousel .carousel-item {
   height: 300px;
 }
-.card-body {
+.grid-products .card-body {
   padding: 0;
 }
 .carousel-item img {
@@ -77,13 +80,13 @@ h3 {
   margin-top: 30px;
   display: flex;
   justify-content: center;
-  width: 20rem;
+ 
 }
 .card a {
   text-decoration: none;
   color: black;
 }
-.card:hover {
+.grid-products .card:hover {
   -webkit-box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
 }
@@ -93,7 +96,12 @@ h3 {
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
+  
 }
+.grid-products .card{
+  width: 20rem;
+}
+
 .nav-link {
   display: flex;
   align-items: center;
