@@ -93,10 +93,10 @@ function Comentario() {
         {allComentarios.length===0&&<h4>No hay ningún comentario</h4>}
         {allComentarios.map((eachComentario) => {
           return (
-            <div>
+            <div key={eachComentario._id}>
               <p>Escrito por: {eachComentario.user.username} </p>
 
-              <div className="comentarios" key={eachComentario._id}>
+              <div className="comentarios" >
                 {eachComentario.comentario}
               </div>
             </div>
