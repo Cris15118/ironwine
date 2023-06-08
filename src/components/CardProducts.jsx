@@ -4,7 +4,7 @@ function CardProducts(props) {
   const { name, image, price, _id } = props.cardProduct;
   return (
     <div>
-      <Card style={{ width: "12rem" }}>
+      <Card style={{ width: "20rem" }}>
       <Link to={`/products/${_id}/details`}>
         <Card.Img variant="top" src={image} width={40} />
         
