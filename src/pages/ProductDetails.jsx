@@ -1,11 +1,12 @@
 import { useContext, useEffect } from "react";
 import { useState } from "react";
-import { useNavigate, useParams,useLocation } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { detailProductService } from "../services/products.services";
 import { RingLoader } from "react-spinners";
 import {
   addWishListService,
   isInWishList,
+  pullWishListService,
 } from "../services/wishlist.services";
 import { addCartService } from "../services/cart.services";
 import { Button } from "react-bootstrap";
@@ -16,8 +17,9 @@ import { GlobalContext } from "../context/cart.context";
 import RandomCard from "../components/RandomCard";
 
 function ProductDetails() {
-  const {  addProductCart } =    useContext(GlobalContext);
-  const location = useLocation()
+  const { addProductCart } = useContext(GlobalContext);
+  const [msgToast,setMsgToast]=useState("")
+  const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AuthContext);
@@ -28,11 +30,20 @@ function ProductDetails() {
   const [showToast, setShowToast] = useState(false);
   const [showToastCart, setShowToastCart] = useState(false);
 
+  const handleRemoveWish = async () => {
+    try {
+      await pullWishListService(params.id);
+      setShowToast(true);
+      getIsInWishList();
+    } catch (error) {
+      navigate("/error");
+    }
+  };
   const handleAddWish = async () => {
     try {
       await addWishListService(params.id);
       setShowToast(true);
-      getIsInWishList()
+      getIsInWishList();
     } catch (error) {
       navigate("/error");
     }
@@ -49,7 +60,9 @@ function ProductDetails() {
   const getIsInWishList = async () => {
     try {
       const isInWL = await isInWishList(params.id);
+      
       if (isInWL) {
+        console.log("isInWL",isInWL.data)
         setIsWishList(isInWL.data);
       }
     } catch (error) {
@@ -64,15 +77,14 @@ function ProductDetails() {
       getIsInWishList();
     }
   }, []);
-  useEffect(()=>{
-    setIsLoading(false)
-    getData()
-    setIsLoading(true)
-    
-},[location])
+
+  useEffect(() => {
+    setIsLoading(false);
+    getData();
+    setIsLoading(true);
+  }, [location]); // cada vez que haya un cambio de url carga datos del producto, para links de debajo
 
   const getData = async () => {
-    
     try {
       const response = await detailProductService(params.id);
       setProductDetail(response.data);
@@ -92,25 +104,27 @@ function ProductDetails() {
   const { name, image, price, tipo, bodega, description } = productDetail;
   return (
     <div className="container-details">
-     
       <h3>{name}</h3>
       <img src={image} alt="vino" width={300} />
       <p>
         {price} <span>€</span>{" "}
       </p>
-      <p >{description}</p>
+      <p>{description}</p>
       <h6>{tipo}</h6>
       <h5>{bodega}</h5>
-      <div  className="btn-añadir">
-      {(isWishList || !isLoggedIn) ? (
+      <div className="btn-añadir">
         
-        <Button style={{backgroundColor: "#857550", borderColor: "cornsilk"}} onClick={handleAddWish} disabled>
-          Añadir a Lista de Deseos
-        </Button>
-      ) : (
-        <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
-      )}
-          {isLoggedIn?<Button  onClick={handleAddCart}>Añadir a Carrito</Button>:<Button onClick={handleAddCart} disabled>Añadir a Carrito</Button>}
+        {(!isWishList && isLoggedIn) && <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
+        }
+        {(isWishList && isLoggedIn) && <Button onClick={handleRemoveWish}> Quitar de Lista de Deseos</Button>
+        }
+        {isLoggedIn ? (
+          <Button onClick={handleAddCart}>Añadir a Carrito</Button>
+        ) : (
+          <Button onClick={handleAddCart} disabled>
+            Añadir a Carrito
+          </Button>
+        )}
       </div>
       <Comentario />
       <ToastMessage
@@ -129,9 +143,8 @@ function ProductDetails() {
         messageTitle={"Añadido a Carrito."}
         message={"Este producto se ha añadido a su carrito"}
       />
-      
-      <RandomCard/>
-      
+
+      <RandomCard />
     </div>
   );
 }

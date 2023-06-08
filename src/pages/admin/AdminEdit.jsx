@@ -87,7 +87,7 @@ function AdminEdit() {
   const handleDelete = async () => {
     try {
       await deleteAdminService(params.id);
-      navigate("/");
+      navigate("/admin");
     } catch (error) {
       navigate("/error");
     }
