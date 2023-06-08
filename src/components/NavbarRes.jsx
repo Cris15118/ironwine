@@ -28,7 +28,7 @@ function NavbarRes({ mostrarOcultarLogin }) {
     mostrarOcultarLogin();
   };
 
-  useEffect(() => {
+  const setHome = () => {
     if (user) {
       switch (
         user.role // depende del usuario te redirige a su pagina home
@@ -44,7 +44,14 @@ function NavbarRes({ mostrarOcultarLogin }) {
           break;
       }
     }
+  };
+  useEffect(() => {
+    setHome();
   }, []);
+
+  useEffect(() => {
+    setHome();
+  }, [isLoggedIn]);
 
   return (
     <>
