@@ -1,5 +1,5 @@
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import PaymentIntent from "./PaymentIntent";
 
 function ModalPago(props) {
@@ -16,7 +16,7 @@ function ModalPago(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-         <PaymentIntent price={props.price} />
+        <PaymentIntent price={props.price} />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

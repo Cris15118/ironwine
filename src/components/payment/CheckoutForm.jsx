@@ -20,7 +20,6 @@ function CheckoutForm({ price }) {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
- 
   useEffect(() => {
     if (!stripe) {
       return;
@@ -39,7 +38,7 @@ function CheckoutForm({ price }) {
         case "succeeded":
           setMessage("Payment succeeded!");
           //vaciar carrito y añadirlo a la tabla de compras
-          
+
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -77,10 +76,10 @@ function CheckoutForm({ price }) {
       } else {
         setMessage("An unexpected error occurred.");
       }
-  
+
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      navigate("/error");
     }
 
     // This point will only be reached if there is an immediate error when
@@ -88,8 +87,6 @@ function CheckoutForm({ price }) {
     // your `return_url`. For some payment methods like iDEAL, your customer will
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
-
-    
   };
 
   const paymentElementOptions = {
@@ -98,10 +95,7 @@ function CheckoutForm({ price }) {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      {/* <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={(e) => setEmail(e.target.value)}
-      /> */}
+     
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       <Button
         type="submit"

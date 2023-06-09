@@ -36,7 +36,7 @@ function AdminEdit() {
     try {
       setIsLoading(true);
       const response = await detailProductService(params.id);
-      //  console.log(response);
+
       setFormInputs(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -55,7 +55,7 @@ function AdminEdit() {
       uploadData.append("image", e.target.files[0]); // image tiene que ser el mismo nombre q en el middleware uploader.single("image")
 
       const response = await uploadImageService(uploadData);
-      console.log(response.data.image);
+
       setImageUrl(response.data.image); // manda la url de la imagen al front end, usando imageUrl
       setFormInputs({ ...formInputs, image: response.data.image });
       setIsUploading(false);
@@ -192,22 +192,22 @@ function AdminEdit() {
               />
             </Form.Group>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-<div className="btn-forms">
-            <Button
-              variant="outline-success"
-              type="submit"
-              disabled={isLoading}
-            >
-              Editar Producto
-            </Button>
+            <div className="btn-forms">
+              <Button
+                variant="outline-success"
+                type="submit"
+                disabled={isLoading}
+              >
+                Editar Producto
+              </Button>
 
-            <Button
-              variant="outline-danger"
-              onClick={handleDelete}
-              disabled={isLoading}
-            >
-              Borrar Producto
-            </Button>
+              <Button
+                variant="outline-danger"
+                onClick={handleDelete}
+                disabled={isLoading}
+              >
+                Borrar Producto
+              </Button>
             </div>
           </Form>
         </Card.Body>

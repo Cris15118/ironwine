@@ -15,18 +15,16 @@ function Comentario() {
   const [formInput, setFormInput] = useState({
     comentario: "",
   });
-  const { isLoggedIn} = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const [allComentarios, setAllComentarios] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if(isLoggedIn) // solo si esta logueado
-    {
-        getData();
+    if (isLoggedIn) {
+      // solo si esta logueado
+      getData();
+    } else {
+      setIsLoading(false);
     }
-    else{
-        setIsLoading(false)
-    }
-   
   }, []);
   const getData = async () => {
     try {
@@ -34,9 +32,8 @@ function Comentario() {
       const response = await allComentariosService(params.id, formInput);
       setAllComentarios(response.data);
       setIsLoading(false);
-    
     } catch (error) {
-      console.log(error);
+     
       navigate("/error");
     }
   };
@@ -46,15 +43,15 @@ function Comentario() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(formInput);
+    
       await addComentarioService(params.id, formInput);
-     
+
       getData();
 
       setIsLoading(false);
-      setFormInput({comentario:""})
+      setFormInput({ comentario: "" });
     } catch (error) {
-      console.log(error);
+      
       navigate("/error");
     }
   };
@@ -69,38 +66,40 @@ function Comentario() {
   return (
     <div>
       <div className="container-comentario">
-      {isLoggedIn&&
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Deja tu comentario</Form.Label>
-            <Form.Control
-              as="textarea"
-              name="comentario"
-              value={formInput.comentario}
-              onChange={handleInputChange}
-              rows={4}
-              cols={90}
-              style={{ resize: "none" }}
-            />
-          </Form.Group>
-      
-          <Button variant="outline-success" type="submit" disabled={isLoading}>
-            Enviar comentario
-          </Button>
-        </Form>
-    }
+        {isLoggedIn && (
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Deja tu comentario</Form.Label>
+              <Form.Control
+                as="textarea"
+                name="comentario"
+                value={formInput.comentario}
+                onChange={handleInputChange}
+                rows={4}
+                cols={90}
+                style={{ resize: "none" }}
+              />
+            </Form.Group>
+
+            <Button
+              variant="outline-success"
+              type="submit"
+              disabled={isLoading}
+            >
+              Enviar comentario
+            </Button>
+          </Form>
+        )}
       </div>
       <div className="caja-comentarios">
         <h3>Comentarios</h3>
-        {allComentarios.length===0&&<h4>No hay ningún comentario</h4>}
+        {allComentarios.length === 0 && <h4>No hay ningún comentario</h4>}
         {allComentarios.map((eachComentario) => {
           return (
             <div key={eachComentario._id}>
               <p>Escrito por: {eachComentario.user.username} </p>
 
-              <div className="comentarios" >
-                {eachComentario.comentario}
-              </div>
+              <div className="comentarios">{eachComentario.comentario}</div>
             </div>
           );
         })}

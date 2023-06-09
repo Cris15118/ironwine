@@ -6,10 +6,9 @@ import { AuthContext } from "../../context/auth.context";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-
 function Login({ mostrarOcultarLogin }) {
   //funcion para ocultar formularios
-  const { authenticateUser,user } = useContext(AuthContext); // trae la funcion de context
+  const { authenticateUser, user } = useContext(AuthContext); // trae la funcion de context
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,23 +28,24 @@ function Login({ mostrarOcultarLogin }) {
 
       localStorage.setItem("authToken", response.data.authToken);
       //2. verificamos el token para saber quien es el usuario
-      const payload=await authenticateUser(); 
+      const payload = await authenticateUser();
 
-      switch(payload.role) // segun el rol redirige a diferente pagina home
-      {
-        case "user": navigate("/")
-        break
-        case "admin": navigate("/admin")
-        break
-        default: navigate("/")
-        break
+      switch (
+        payload.role // segun el rol redirige a diferente pagina home
+      ) {
+        case "user":
+          navigate("/");
+          break;
+        case "admin":
+          navigate("/admin");
+          break;
+        default:
+          navigate("/");
+          break;
       }
-      console.log("PAYLOAD ",payload)
-     
+
       mostrarOcultarLogin(); // cierra offcanvas de los formularios
-      // navigate("/profile");
     } catch (err) {
-     
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);
       } else {
@@ -53,23 +53,25 @@ function Login({ mostrarOcultarLogin }) {
       }
     }
   };
-useEffect(()=>{
-  if(user)
-  {
-    switch(user.role) // depende del usuario te redirige a su pagina home
-    {
-      case "user": navigate("/")
-      break
-      case "admin" : navigate("/admin")
-      break
-      default : navigate("/")
-      break
+  useEffect(() => {
+    if (user) {
+      switch (
+        user.role // depende del usuario te redirige a su pagina home
+      ) {
+        case "user":
+          navigate("/");
+          break;
+        case "admin":
+          navigate("/admin");
+          break;
+        default:
+          navigate("/");
+          break;
+      }
     }
-  }
-},[])
+  }, []);
   return (
     <div>
-   
       <Card className="login-form">
         <h3>Log In</h3>
         <Card.Body>
@@ -100,7 +102,6 @@ useEffect(()=>{
           </Form>
         </Card.Body>
       </Card>
-
     </div>
   );
 }

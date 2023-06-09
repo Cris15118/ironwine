@@ -12,7 +12,7 @@ function Cart() {
   const [modalShowMsg, setModalShowMsg] = useState(false);
   //cart context
   const handleClose = () => setModalShowMsg(false);
- 
+
   const { productsCart, emptyCart, getCartProducts, totalPrice } =
     useContext(GlobalContext);
 
@@ -38,7 +38,6 @@ function Cart() {
       await getCartProducts();
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       navigate("/error");
     }
   };
@@ -57,11 +56,12 @@ function Cart() {
 
   return (
     <div className="container-responsive">
-    <ModalMessage
+      <ModalMessage
         show={modalShowMsg}
         handleClose={handleClose}
         acceptBtn={handleVaciarCarrito}
-        modalTitle={"Vaciar Carrito"} modalBody={"¿Desea vaciar el carrito?"}
+        modalTitle={"Vaciar Carrito"}
+        modalBody={"¿Desea vaciar el carrito?"}
       />
       <h3>Carro de la compra</h3>
       <div className="grid-products">
@@ -69,46 +69,46 @@ function Cart() {
           return <CartProduct key={index} cardProduct={eachProduct} />;
         })}
       </div>
-      
+
       {/* solo se muestran si existen productos en el carrito */}
-      
+
       {productsCart.length > 0 ? (
         <div>
-        <div className="btn-vaciar">
-          <Button className="color-vaciar" onClick={()=>setModalShowMsg(true)} >
-            Vaciar Carrito
-          </Button>
-          <Button
-            className="color-pagar"
-            variant="primary"
-            onClick={() => setModalShow(true)}
-          >
-            Pagar ahora
-          </Button>
-          <ModalPago
-            price={totalPrice}
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-          />
+          <div className="btn-vaciar">
+            <Button
+              className="color-vaciar"
+              onClick={() => setModalShowMsg(true)}
+            >
+              Vaciar Carrito
+            </Button>
+            <Button
+              className="color-pagar"
+              variant="primary"
+              onClick={() => setModalShow(true)}
+            >
+              Pagar ahora
+            </Button>
+            <ModalPago
+              price={totalPrice}
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
           </div>
           <div className="input-price">
             <p>Total a pagar</p>
-          <input
-            style={{ textAlign: "center", width: "100px" }}
-            name="total"
-            value={totalPrice}
-            disabled
-          /><p>€</p>
-          
+            <input
+              style={{ textAlign: "center", width: "100px" }}
+              name="total"
+              value={totalPrice}
+              disabled
+            />
+            <p>€</p>
           </div>
-        
         </div>
-     ) : (
+      ) : (
         <h4>El carrito está vacío</h4>
       )}
-      
     </div>
-    
   );
 }
 

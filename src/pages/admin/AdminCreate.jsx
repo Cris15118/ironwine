@@ -45,9 +45,6 @@ function AdminCreate() {
   const handleInputsChange = (e) =>
     setFormInputs({ ...formInputs, [e.target.name]: e.target.value }); // actualiza el estado de la propiedad que cambie en ese momento
 
-  const mostrar = () => {
-    console.log(!formInputs.name);
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

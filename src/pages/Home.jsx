@@ -18,21 +18,19 @@ import { Button } from "react-bootstrap";
 import { AuthContext } from "../context/auth.context";
 import ToastMessage from "../components/ToastMessage";
 
-
 function Home() {
   const [showToastCart, setShowToastCart] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const { addProductCart } = useContext(GlobalContext);
   const { isLoggedIn } = useContext(AuthContext);
   const handleAddCart = async (e) => {
-   
     try {
       setIsAdding(true);
       await addProductCart(e.target.id);
-      setShowToastCart(true)
+      setShowToastCart(true);
       setIsAdding(false);
     } catch (error) {
-      console.log(error);
+      
       navigate("/error");
     }
   };
@@ -58,9 +56,12 @@ function Home() {
     }
   };
 
-  const searchWine = (search,searchDropdown) => {
+  const searchWine = (search, searchDropdown) => {
     let newSearch = allProducts.filter((eachProduct) => {
-      if (eachProduct.name.toLowerCase().includes(search) && (eachProduct.tipo===searchDropdown || searchDropdown ==="")) {
+      if (
+        eachProduct.name.toLowerCase().includes(search) &&
+        (eachProduct.tipo === searchDropdown || searchDropdown === "")
+      ) {
         return true;
       } else {
         return false;
@@ -92,7 +93,8 @@ function Home() {
               <div key={eachProduct._id}>
                 <CardProducts cardProduct={eachProduct} />
                 <div>
-                  <Button className="btn-añadir-home"
+                  <Button
+                    className="btn-añadir-home"
                     id={eachProduct._id}
                     onClick={handleAddCart}
                     disabled={isAdding || !isLoggedIn ? true : false}
@@ -105,9 +107,8 @@ function Home() {
           })}
         </div>
       </section>
-     
+
       <ToastMessage
-       
         setShow={setShowToastCart}
         bgColor={"blue"}
         textColor={"white"}
@@ -115,7 +116,6 @@ function Home() {
         messageTitle={"Carrito de la compra"}
         message={"Producto añadido a su carrito"}
       />
-    
     </div>
   );
 }

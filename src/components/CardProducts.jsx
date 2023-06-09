@@ -10,30 +10,27 @@ function CardProducts(props) {
   const navigate = useNavigate();
   const { addProductCart } = useContext(GlobalContext);
   const handleAddCart = async (e) => {
-   
     try {
       setIsAdding(true);
       await addProductCart(e.target.id);
       setIsAdding(false);
     } catch (error) {
-      console.log(error);
+      
       navigate("/error");
     }
   };
 
   return (
-   
-      <Card style={{ width: "20rem" }}>
-        <Link to={`/products/${_id}/details`}>
-          <Card.Img variant="top" src={image} width={40} />
+    <Card style={{ width: "20rem" }}>
+      <Link to={`/products/${_id}/details`}>
+        <Card.Img variant="top" src={image} width={40} />
 
-          <Card.Body>
-            <Card.Title>{name}</Card.Title>
-            <Card.Text>{price} €</Card.Text>
-          </Card.Body>
-        </Link>
-      </Card>
-    
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>{price} €</Card.Text>
+        </Card.Body>
+      </Link>
+    </Card>
   );
 }
 export default CardProducts;

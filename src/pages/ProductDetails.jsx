@@ -18,11 +18,11 @@ import RandomCard from "../components/RandomCard";
 
 function ProductDetails() {
   const { addProductCart } = useContext(GlobalContext);
-  const [msgToast,setMsgToast]=useState("")
+  const [msgToast, setMsgToast] = useState("");
   const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
-  const { isLoggedIn,user } = useContext(AuthContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
   const [productDetail, setProductDetail] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isWishList, setIsWishList] = useState(false);
@@ -33,7 +33,7 @@ function ProductDetails() {
   const handleRemoveWish = async () => {
     try {
       await pullWishListService(params.id);
-      setMsgToast("Producto eliminado de su lista de deseos")
+      setMsgToast("Producto eliminado de su lista de deseos");
       setShowToast(true);
       getIsInWishList();
     } catch (error) {
@@ -43,7 +43,7 @@ function ProductDetails() {
   const handleAddWish = async () => {
     try {
       await addWishListService(params.id);
-      setMsgToast("Producto añadido a su lista de deseos")
+      setMsgToast("Producto añadido a su lista de deseos");
       setShowToast(true);
       getIsInWishList();
     } catch (error) {
@@ -53,7 +53,7 @@ function ProductDetails() {
   const handleAddCart = async () => {
     try {
       await addProductCart(params.id);
-      setMsgToast("Producto añadido a su carrito")
+      setMsgToast("Producto añadido a su carrito");
       setShowToastCart(true);
     } catch (error) {
       navigate("/error");
@@ -63,13 +63,13 @@ function ProductDetails() {
   const getIsInWishList = async () => {
     try {
       const isInWL = await isInWishList(params.id);
-      
+
       if (isInWL) {
-        console.log("isInWL",isInWL.data)
+       
         setIsWishList(isInWL.data);
       }
     } catch (error) {
-      console.log(error);
+    
       navigate("/error");
     }
   };
@@ -107,38 +107,41 @@ function ProductDetails() {
   const { name, image, price, tipo, bodega, description } = productDetail;
   return (
     <div>
-    <div className="container-details">
-      <h3>{name}</h3>
-      <img src={image} alt="vino"  />
-      <p>
-        {price} <span>€</span>{" "}
-      </p>
-      <p >{description}</p>
-      <h6>{tipo}</h6>
-      <h5>{bodega}</h5>
-    
-      <div className="btn-añadir">
-        
-        {((!isWishList && isLoggedIn) && user.role !== "admin") && <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
-        }
-        {((isWishList && isLoggedIn) && user.role !== "admin")&& <Button onClick={handleRemoveWish}> Quitar de Lista de Deseos</Button>
-        }
-        {isLoggedIn && user.role !== "admin"&&
-        (isLoggedIn ) ? (
-          <Button onClick={handleAddCart}>Añadir a Carrito</Button>
-        ) : (
-          <Button onClick={handleAddCart} disabled>
-            Añadir a Carrito
-          </Button>
-        )}
-      </div>
-      <hr />
-      <Comentario />
-    <hr />
+      <div className="container-details">
+        <h3>{name}</h3>
+        <img src={image} alt="vino" />
+        <p>
+          {price} <span>€</span>{" "}
+        </p>
+        <p>{description}</p>
+        <h6>{tipo}</h6>
+        <h5>{bodega}</h5>
 
-      <RandomCard />
-    </div>
-    <ToastMessage
+        <div className="btn-añadir">
+          {!isWishList && isLoggedIn && user.role !== "admin" && (
+            <Button onClick={handleAddWish}>Añadir a Lista de Deseos</Button>
+          )}
+          {isWishList && isLoggedIn && user.role !== "admin" && (
+            <Button onClick={handleRemoveWish}>
+             
+              Quitar de Lista de Deseos
+            </Button>
+          )}
+          {isLoggedIn && user.role !== "admin" && isLoggedIn ? (
+            <Button onClick={handleAddCart}>Añadir a Carrito</Button>
+          ) : (
+            <Button onClick={handleAddCart} disabled>
+              Añadir a Carrito
+            </Button>
+          )}
+        </div>
+        <hr />
+        <Comentario />
+        <hr />
+
+        <RandomCard />
+      </div>
+      <ToastMessage
         setShow={setShowToast}
         bgColor={"#fff08b"}
         textColor={"black"}
@@ -154,7 +157,7 @@ function ProductDetails() {
         messageTitle={"Carrito de la compra"}
         message={msgToast}
       />
-      </div>
+    </div>
   );
 }
 

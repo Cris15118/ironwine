@@ -44,17 +44,16 @@ function RandomCard() {
   }
   return (
     <div className="container-random">
-    <h3>También te puede interesar</h3>
-    <div className="card-random">
-    
-      {allProducts.map((eachProduct, index) => {
-        return (
-          <div key={`${eachProduct._id}${index}`}>
-            <CardProducts cardProduct={eachProduct} />
-          </div>
-        );
-      })}
-    </div>
+      <h3>También te puede interesar</h3>
+      <div className="card-random">
+        {allProducts.map((eachProduct, index) => {
+          return (
+            <div key={`${eachProduct._id}${index}`}>
+              <CardProducts cardProduct={eachProduct} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -33,7 +33,6 @@ function Signup({ setKey, setShow }) {
       setShow(true);
       navigate("/");
     } catch (err) {
-      console.log(err);
       if (err.response.status === 400) {
         setErrorMessage(err.response.data.errorMessage);
       } else {

@@ -25,6 +25,7 @@ function AdminHome() {
       navigate("/error");
     }
   };
+  
   if (isLoading) {
     return (
       <div className="spinner">
