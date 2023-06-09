@@ -56,7 +56,7 @@ function Cart() {
   }
 
   return (
-    <div>
+    <div className="container-responsive">
     <ModalMessage
         show={modalShowMsg}
         handleClose={handleClose}

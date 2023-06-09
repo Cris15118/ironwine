@@ -42,7 +42,7 @@ function Profile() {
     );
   }
   return (
-    <div>
+    <div className="container-responsive">
       <h1>Perfil de {user.user}</h1>
       
       <h3>Historial de compras</h3>

@@ -79,7 +79,7 @@ function Home() {
   }
 
   return (
-    <div className="container-all">
+    <div className="container-all container-responsive">
       <div>
         <Search searchWine={searchWine} />
       </div>

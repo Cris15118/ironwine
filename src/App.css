@@ -2,10 +2,24 @@
 /*color marron dorado light #b7aa8d*/
 /* color footer #857550 */
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
-html,
+
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
   height: 100%;
+  margin-bottom: 200px;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  background-color: #857550 !important;
+}
+
 .App {
   text-align: center;
   height: 100%;
@@ -31,7 +45,7 @@ h3 {
   margin: auto;
   width: 75%;
 }
-.admin-create-form .card{
+.admin-create-form .card {
   width: 70% !important;
 }
 
@@ -80,19 +94,17 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap:50px;
+  gap: 50px;
 }
-.card-container .card:hover{
+.card-container .card:hover {
   -webkit-box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
 }
 .card {
-
   border: none;
   margin-top: 30px;
   display: flex;
   justify-content: center;
-
 }
 .card a {
   text-decoration: none;
@@ -108,9 +120,8 @@ h3 {
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
-  
 }
-.grid-products .card{
+.grid-products .card {
   width: 20rem;
 }
 
@@ -133,7 +144,7 @@ h3 {
 .bi-search {
   display: flex;
   align-items: center;
-  margin-right: 10px ;
+  margin-right: 10px;
   color: gray;
 }
 
@@ -144,11 +155,6 @@ h3 {
   padding: 10px 10px 0 10px;
 }
 /*FOOTER*/
-
-footer {
-  background-color: #857550 !important;
-  margin-top: 180px;
-}
 
 /* FORM COMENTARIO Y COMENTARIOS*/
 .container-comentario {
@@ -237,19 +243,19 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap:20px;
+  gap: 20px;
   margin-top: 50px;
 }
-.btn-forms{
+.btn-forms {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap:50px;
+  gap: 50px;
 }
 .btn-añadir Button {
   background-color: #857550;
   border-color: cornsilk;
-  
+
   font-weight: bolder;
 }
 .btn-añadir button:hover {
@@ -258,13 +264,11 @@ footer {
   background-color: rgb(165, 142, 42);
   border: rgb(165, 142, 42);
 }
-.card-random .card:hover
-{
+.card-random .card:hover {
   -webkit-box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
   box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.15);
-
 }
-.container-details img{
+.container-details img {
   height: 350px;
 }
 .container-details {
@@ -296,26 +300,34 @@ footer {
 h1,
 h3 {
   margin-top: 0;
- 
+
   margin-bottom: 15px;
 }
-.description{
+.description {
   width: 70%;
 }
-h1{
+h1 {
   background-color: #e4d7b9;
-  color:#8b6c27;
+  color: #8b6c27;
 }
-.container-random{
+.container-random {
   margin-top: 15px;
 }
+@media screen and (max-width: 992px) {
+  .container-random,.container-responsive {
+    margin-bottom: 500px;
+  }
+}
+
 .card-random {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   gap: 60px;
-  margin-top:10px;
+  margin-top: 10px;
 }
+
 .input-price {
   display: flex;
   justify-content: center;
